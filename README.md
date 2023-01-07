@@ -1,10 +1,10 @@
 #Red Pepper IT
 ## Installation
-### Pre-requisites
+### Pre-requisites (INSTALL THESE)
 - PHP 8.1.10
 - MySQL 5.7.36
-- Composer
 - APACHE 2.4.51
+- Composer (https://getcomposer.org/download/)
 
 ### Setting up the environment
 1. After cloning the repo, set up a virtual host to its root directory.
@@ -15,9 +15,9 @@
 6. Create a MySQL database and add the name of the database in the .env file (DB_NAME=...)
 7. Migrate the initial tables with the following command:
 ```
-vendor/bin/phinx migrate
+.\vendor\bin\phinx migrate
 ```
-8. After these steps are done, the user should be able to start the server.
+8. After these steps are done, the user should be able to browse to the server.
 
 ### Developing a module
 1. Create a new folder under the "modules" folder. The name of the folder shoul not have spaces.
