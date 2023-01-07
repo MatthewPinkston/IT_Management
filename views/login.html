@@ -1,0 +1,58 @@
+{% extends 'views/templates/twoColumnTemplate.html' %}
+
+
+{% block column1 %}
+    {% include 'views/components/sideLogo.html' with {'appName': appName} %}   
+{% endblock %}
+
+
+{% block column2 %}
+    <div class="col p-0">
+        <div class="h-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-start align-items-start" style="min-width:35%">
+                <h1 class="font-Montserrat f-weight-700 color-primary ">Sign In</h1>
+                <div class="w-100">
+                    <form action="login" method="POST">
+                        {% if error == '1'%}
+                            <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+                                Email address or Password empty
+                            </div>
+                        {% elseif error == '2' %}
+                            <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+                                Wrong email or password
+                            </div>
+                        {% elseif error == '3' %}
+                            <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+                                Your account has not been approved yet.
+                            </div>
+                        {% endif %}
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label font-Montserrat f-weight-600 color-primary" for="form2Example1">Email address</label>
+                            <input type="email" id="form2Example1" class="form-control rppit-inbx-s1" name="user_email" />
+                        </div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label font-Montserrat f-weight-600" for="form2Example2">Password</label>
+                            <input type="password" id="form2Example2" class="form-control rppit-inbx-s1" name="user_password" />
+                        </div>
+
+                        <!-- Submit button -->
+                        <input type="submit" class="btn button-accent btn-block mb-4 font-Montserrat color-primary f-weight-700 parentWidth shadow" name="login" value="Sign In">
+                    </form>
+
+                    
+                    <div class="text-center font-Montserrat f-weight-400">
+                        <p>Don't have an account? <a href="/register" class="color-link" style="text-decoration: none;"><b>Register</b></a></p>
+                        <form action="forgotPassword" method="POST" id="forgotPasswordForm">
+                            <input type="hidden" name="user_email" value="form2Example1">
+                            <input type="hidden" name="forgotPassword" value="forgotPassword">
+                            <a class="color-link" onclick="document.getElementById('forgotPasswordForm').submit();" href="/forgotPassword" style="text-decoration: none;"><b>Forgot Password</b></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+{% endblock %}

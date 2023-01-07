@@ -1,0 +1,14 @@
+<!-- Main template with sidenav and navbar -->
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include 'views/templates/header.html' %}
+    </head>
+    <body class="backgroundCol">
+        <div class="container-fluid p-0">
+            {# Include the navigation bars, these require a boolean variable to check if the user has access to the users table/view and the user's name #}
+            {% include 'views/components/navbar.html' %}
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

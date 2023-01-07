@@ -1,0 +1,9 @@
+{
+    "module_name": "Sample App",
+    "module_route": "sampleApp",
+    "module_root": "./modules/sampleApp",
+    "dashboard_path": "./modules/sampleApp/dashboard/sampleAppDash.html",
+    "dashboard_controller_path": "./modules/sampleApp/dashboard/sampleAppDash.php",
+    "view_path": "/modules/sampleApp/views/sampleApp.html",
+    "migration_path": "%%PHINX_CONFIG_DIR%%/modules/sampleApp/migrations"
+}
