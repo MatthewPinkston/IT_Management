@@ -1,5 +1,6 @@
-Eun Sik Kim
-Neha Dedani
-Bukky Adekunle
-Ivana George
-Catlin Washington
+Eun Sik Kim\
+Neha Dedani\
+Bukky Adekunle\
+Ivana George\
+Catlin Washington\
+Ethan Luettgemann
