@@ -20,7 +20,7 @@ final class LicenseTrackingTable extends AbstractMigration
      */
     public function change()
     {
-        $licenses = $this->table('JeredNew', ['id' => false, 'primary_key' => 'id']);
+        $licenses = $this->table('License_Tracking', ['id' => false, 'primary_key' => 'id']);
 
         $licenses
             -> addColumn('id', 'uuid', ['null' => false])

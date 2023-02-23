@@ -14,7 +14,7 @@
     }
 
     function getLicenses($conn){
-        $query = "SELECT * FROM `JeredNew`";
+        $query = "SELECT * FROM 'JeredNew'";
 
         $res = mysqli_query($conn, $query);
 
