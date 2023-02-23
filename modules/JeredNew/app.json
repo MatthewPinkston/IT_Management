@@ -1,0 +1,9 @@
+{
+    "module_name": "Jered New",
+    "module_route": "JeredNew",
+    "module_path": "./modules/JeredNew",
+    "dashboard_path": "./modules/JeredNew/dashboard/JeredNewDash.html",
+    "dashboard_controller_path": "./modules/JeredNew/dashboard/JeredNewDash.php",
+    "view_path": "./modules/JeredNew/views/JeredNew.html",
+    "migration_path": "%%PHINX_CONFIG_DIR%%/modules/JeredNew/migrations"
+}
