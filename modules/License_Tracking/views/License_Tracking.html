@@ -44,12 +44,30 @@
                                 {% endif %}
                             </td>
                             <td class="">
-                                <button type="button" class="btn button-accent font-Montserrat f-weight-400">
-                                    edit
-                                </button>
+                                
+
+                                    <a role="button" href="/edit-lic?id={{ license.id }}" class="btn button-accent font-Montserrat f-weight-400">
+                                        edit
+                                    </a>
+
+
+                                
                                 <button type="button" class="btn btn-danger">
                                     <i class="bi bi-trash3-fill"></i>
                                 </button>
+
+                                <br><br>
+
+
+                                <button type="button" class="btn btn-info font-Montserrat f-weight-400">
+                                    Add
+                                </button> 
+
+
+
+
+
+
                             </td>
                             <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td>
                         </tr>
