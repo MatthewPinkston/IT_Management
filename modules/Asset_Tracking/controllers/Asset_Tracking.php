@@ -2,14 +2,27 @@
     require_once($_SERVER['DOCUMENT_ROOT'].'/app.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/authentication/authentication.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/authentication/roles.php');
+    require_once($_SERVER['DOCUMENT_ROOT']."/mysql/config.php");
 
-    $app = $_SERVER['DOCUMENT_ROOT'].'/modules/module_example/app.json';
-    
+    $app = $_SERVER['DOCUMENT_ROOT'].'/modules/Asset_Tracking/app.json';
+
     $title = getValue($app, 'module_name');
 
     // If the user is not logged in, redirect to login view
     if(!isLogged()){
-        header('Location: /login');
+        header('Location: /Login');
+    }
+
+    function getLicenses($conn){
+        $query = "SELECT * FROM `Asset_Tracking`";
+
+        $res = mysqli_query($conn, $query);
+
+        while($row = mysqli_fetch_object($res)){
+            $assets[]=$row;
+        }
+
+        return $assets;
     }
 
     echo $_SESSION['TWIG'] ->render(getValue($app, 'view_path'), [
@@ -18,5 +31,7 @@
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
         'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
-        'modules' => $_SERVER['MODULE_PATHS'] //Expected side navbar
-    ]); 
+        'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
+
+/*         'assets' => getAssets($conn)
+ */    ]);
