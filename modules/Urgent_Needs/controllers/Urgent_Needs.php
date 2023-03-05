@@ -3,7 +3,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/authentication/authentication.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/authentication/roles.php');
 
-    $app = $_SERVER['DOCUMENT_ROOT'].'/modules/sampleApp/app.json';
+    $app = $_SERVER['DOCUMENT_ROOT'].'/modules/urgentNeeds/app.json';
     
     $title = getValue($app, 'module_name');
 
