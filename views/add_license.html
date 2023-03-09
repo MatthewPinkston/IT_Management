@@ -2,12 +2,27 @@
 
 {% block content %}
     <div class="container rppit-mc-p1">
-        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Edit License</h1>
+        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Add License</h1>
         
         <div class="w-100 p-3">
 
- 
-            <form action="edit-lic" method="POST">
+            <!--
+            <button type="button" class="btn btn-light" ><strong> Assets</strong></button>
+            <button type="button" class="btn btn-light" ><strong> Tickets</strong></button>
+            <button type="button" class="btn btn-light" ><strong> Checkouts</strong></button>
+            -->
+
+            <!-- This is from navbar.html line 10-->
+            <!--Class name changed from w-25 to w-100-->
+
+
+            <!--
+            <label>Name
+                <input id="User" name="Name" type="text"/>
+                </label>
+            -->
+
+            <form action="add-lic" method="POST">
       
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
@@ -15,11 +30,11 @@
                     <input id="name" name="name" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.name}}" >
                 </div>
 
+
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Software Version: </label>
                     <input id="version" name="version" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.version}}"/>
                 </div>
-
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Total Purchased: </label>
                     <input id="totalPurchased" name="totalPurchased" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.totalPurchased}}" />
@@ -29,27 +44,32 @@
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Managed Installations: </label>
                     <input id="managedInstallations" name="managedInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.managedInstallations}}" />
                 </div>
-
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">network Installations: </label>
-                    <input id="networkInstallations" name="networkInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.networkInstallations}}" />
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Network Installations: </label>
+                    <input id="networkInstallations" name="networkInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.networkInstallations}}"/>
                 </div>
-              
+                <!-- <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Place of Birth (City): </label>
+                    <input id="question3" name="question3" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.question3}}" disabled/>
+                </div> -->
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
 
                     <input type="hidden" name="id" value="{{currentLicense.id}}">
 
-                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="changeLicenseInfo" value="Save" >
+                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="addLicenseInfo" value="Save" >
 
                 </div>
+
+
+
 
 
             </form>
 
         </div>
 
-        <!-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
             {% if error == '1' %}
                 <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="d-flex">
@@ -115,7 +135,7 @@
                 </div>
             {% endif %}
         </div>
-    </div> -->
+    </div>
 
     <script>
         $('#changeButton').click(() => {enableInputs()});

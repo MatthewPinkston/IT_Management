@@ -1,0 +1,62 @@
+{% extends 'views/templates/mainTemplate.html' %}
+
+{% block content %}
+    <div class="container rppit-mc-p1">
+        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Delete License</h1>
+        
+        <div class="w-100 p-3">
+
+        
+            <form action="delete-lic" method="POST">
+      
+
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <p>Would you like to delete this license?</p> <br></div>
+
+                    <input type="hidden" name="id" value="{{currentLicense.id}}">
+
+                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="deleteLicenseInfo" value="Delete" >
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+        
+
+    <script>
+        $('#changeButton').click(() => {enableInputs()});
+
+
+        function enableInputs(){
+            $('#firstName').prop('disabled', false);
+            $('#lastName').prop('disabled', false);
+            $('#email').prop('disabled', false);
+            $('#question1').prop('disabled', false);
+            $('#question2').prop('disabled', false);
+            $('#question3').prop('disabled', false);
+            $('#submitButton').prop('disabled', false);
+            $('#changeButton').removeClass('button-accent').addClass('btn-secondary');
+            $('#changeButton').html('Cancel');
+            $('#changeButton').click(() => {disableInputs()});
+        }
+
+        function disableInputs(){
+            $('#firstName').prop('disabled', true);
+            $('#lastName').prop('disabled', true);
+            $('#email').prop('disabled', true);
+            $('#question1').prop('disabled', true);
+            $('#question2').prop('disabled', true);
+            $('#question3').prop('disabled', true);
+            $('#submitButton').prop('disabled', true);
+            $('#changeButton').removeClass('btn-secondary').addClass('button-accent');
+            $('#changeButton').html('Change');
+            $('#changeButton').click(() => {enableInputs()});
+        }
+    </script>
+
+    {% include 'views/components/modals/profile/changePasswordModal.html' %}
+    
+{% endblock %}

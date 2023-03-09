@@ -9,6 +9,8 @@
     get('/main', './controllers/mainTemplateExample.php');
     get('/twoCol', './controllers/twoColumnExample.php');
     get('/edit-lic', './controllers/edit_license.php');
+    get('/add-lic', './controllers/add_license.php');
+    get('/delete-lic', './controllers/delete_license.php');
 
     if(isset($_SESSION['user_roles']) && checkPrivilege('view_users', $_SESSION['user_roles'])){
         get('/users', './controllers/users.php');
@@ -39,6 +41,8 @@
     post('/profile', './controllers/profile.php');
 
     post('/edit-lic', './controllers/edit_license.php');
+    post('/add-lic', './controllers/add_license.php');
+    post('/delete-lic', './controllers/delete_license.php');
 
     // For GET or POST
     // The 404.php which is inside the views folder will be called
