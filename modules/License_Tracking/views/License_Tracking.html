@@ -44,12 +44,49 @@
                                 {% endif %}
                             </td>
                             <td class="">
-                                <button type="button" class="btn button-accent font-Montserrat f-weight-400">
-                                    edit
-                                </button>
-                                <button type="button" class="btn btn-danger">
+
+                                <div >
+
+
+                                    <a role="button" href="/add-lic" class="btn btn-info ">
+                                        Add
+                                    </a>
+                              
+                                    <a role="button" href="/edit-lic?id={{ license.id }}" class="btn button-accent font-Montserrat f-weight-400">
+                                        Edit
+                                    </a> <br>
+
+                                    <a role="button" href="/delete-lic?id={{ license.id }}" class="btn btn-danger font-Montserrat f-weight-400">
+                                        Delete
+                                    </a> <br>
+
+
+                                    <button type="button" class="btn btn-info font-Montserrat f-weight-400">
+                                        View
+                                    </button> 
+    
+                               
+                                <!-- <button type="button" class="btn btn-danger">
                                     <i class="bi bi-trash3-fill"></i>
-                                </button>
+                                </button> -->
+
+                                
+
+                              
+
+
+                                
+
+                                </div>
+                                
+
+                          
+
+
+
+
+
+
                             </td>
                             <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td>
                         </tr>

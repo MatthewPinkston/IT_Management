@@ -1,0 +1,173 @@
+{% extends 'views/templates/mainTemplate.html' %}
+
+{% block content %}
+    <div class="container rppit-mc-p1">
+        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Add License</h1>
+        
+        <div class="w-100 p-3">
+
+            <!--
+            <button type="button" class="btn btn-light" ><strong> Assets</strong></button>
+            <button type="button" class="btn btn-light" ><strong> Tickets</strong></button>
+            <button type="button" class="btn btn-light" ><strong> Checkouts</strong></button>
+            -->
+
+            <!-- This is from navbar.html line 10-->
+            <!--Class name changed from w-25 to w-100-->
+
+
+            <!--
+            <label>Name
+                <input id="User" name="Name" type="text"/>
+                </label>
+            -->
+
+            <form action="add-lic" method="POST">
+      
+
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Software Name: </label>
+                    <input id="name" name="name" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.name}}" >
+                </div>
+
+
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Software Version: </label>
+                    <input id="version" name="version" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.version}}"/>
+                </div>
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Total Purchased: </label>
+                    <input id="totalPurchased" name="totalPurchased" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.totalPurchased}}" />
+                </div>
+
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Managed Installations: </label>
+                    <input id="managedInstallations" name="managedInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.managedInstallations}}" />
+                </div>
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Network Installations: </label>
+                    <input id="networkInstallations" name="networkInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.networkInstallations}}"/>
+                </div>
+                <!-- <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Place of Birth (City): </label>
+                    <input id="question3" name="question3" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.question3}}" disabled/>
+                </div> -->
+
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+
+                    <input type="hidden" name="id" value="{{currentLicense.id}}">
+
+                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="addLicenseInfo" value="Save" >
+
+                </div>
+
+
+
+
+
+            </form>
+
+        </div>
+
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            {% if error == '1' %}
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">Something Went Wrong!</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% elseif error == '2' %}
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">Some inputs were empty.</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% elseif error == '3' %}
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">New Password and Confirm New Password do not match</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% elseif error == '4' %}
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">Old Password do not match</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% elseif error == '5' %}
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">Password must be at least 8 characters long.</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% elseif error == '6' %}
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">Password must contain at least one special character (#, &, ^, *, %, @, $, !).</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% elseif error == '7' %}
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">Password must contain at least one upper case letter and one lower case letter.</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% elseif error == '8' %}
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">Password must contain at least one number.</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% elseif error == 'none' %}
+                <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">Success</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        $('#changeButton').click(() => {enableInputs()});
+
+
+        function enableInputs(){
+            $('#firstName').prop('disabled', false);
+            $('#lastName').prop('disabled', false);
+            $('#email').prop('disabled', false);
+            $('#question1').prop('disabled', false);
+            $('#question2').prop('disabled', false);
+            $('#question3').prop('disabled', false);
+            $('#submitButton').prop('disabled', false);
+            $('#changeButton').removeClass('button-accent').addClass('btn-secondary');
+            $('#changeButton').html('Cancel');
+            $('#changeButton').click(() => {disableInputs()});
+        }
+
+        function disableInputs(){
+            $('#firstName').prop('disabled', true);
+            $('#lastName').prop('disabled', true);
+            $('#email').prop('disabled', true);
+            $('#question1').prop('disabled', true);
+            $('#question2').prop('disabled', true);
+            $('#question3').prop('disabled', true);
+            $('#submitButton').prop('disabled', true);
+            $('#changeButton').removeClass('btn-secondary').addClass('button-accent');
+            $('#changeButton').html('Change');
+            $('#changeButton').click(() => {enableInputs()});
+        }
+    </script>
+
+    {% include 'views/components/modals/profile/changePasswordModal.html' %}
+    
+{% endblock %}
