@@ -1,7 +1,7 @@
 <?php
-    $overLicensedQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE complianceStatus = 'Over Licensed'";
-    $underLicensedQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE complianceStatus = 'Under Licensed'";
-    $inComplianceQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE complianceStatus = 'In Compliance'";
+    $overLicensedQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE LicenseStatus = 'Over Licensed'";
+    $underLicensedQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE LicenseStatus = 'Under Licensed'";
+    $inComplianceQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE LicenseStatus = 'In Compliance'";
 
     $resOverLicensed = mysqli_query($conn, $overLicensedQuery);
     $resUnderLicensed = mysqli_query($conn, $underLicensedQuery);
