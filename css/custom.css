@@ -32,13 +32,16 @@
     color: white;
 }
 .color-primary{
-    color: #18345e;
+    color: #1fa5e8;
 }
 .color-secondary{
     color: #D9D9D9;
 }
 .color-accent{
     color: #F0AB20;
+}
+.color-accent1{
+    color: #2065f0;
 }
 .color-link{
     color: #22C1DC;

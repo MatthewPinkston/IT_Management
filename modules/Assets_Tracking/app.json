@@ -1,0 +1,9 @@
+{
+    "module_name": "Assets Tracking",
+    "module_route": "Assets_Tracking",
+    "module_path": "./modules/Assets_Tracking",
+    "dashboard_path": "./modules/Assets_Tracking/dashboard/Assets_TrackingDash.html",
+    "dashboard_controller_path": "./modules/Assets_Tracking/dashboard/Assets_TrackingDash.php",
+    "view_path": "./modules/Assets_Tracking/views/Assets_Tracking.html",
+    "migration_path": "%%PHINX_CONFIG_DIR%%/modules/Assets_Tracking/migrations"
+}
