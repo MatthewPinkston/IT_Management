@@ -13,25 +13,26 @@
         header('Location: /Login');
     }
 
-    function getLicenses($conn){
-        $query = "SELECT * FROM `Asset_Tracking`";
+    function getAssets($conn){
+        $query = "SELECT * FROM `assets`";
 
         $res = mysqli_query($conn, $query);
 
-        while($row = mysqli_fetch_object($res)){
+        while($row = mysqli_fetch_assoc($res)){
             $assets[]=$row;
         }
 
         return $assets;
     }
-
+        var_dump(getAssets($conn)); exit;
     echo $_SESSION['TWIG'] ->render(getValue($app, 'view_path'), [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
         'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
-        'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
+        'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar */
 
-/*         'assets' => getAssets($conn)
- */    ]);
+         'assets' => getAssets($conn)
+     ]);
+/* echo 'bam'; */
