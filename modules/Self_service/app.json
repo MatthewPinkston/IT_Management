@@ -1,0 +1,9 @@
+{
+    "module_name": "Self Service",
+    "module_route": "Self_Service",
+    "module_path": "./modules/Self_Service",
+    "dashboard_path": "./modules/Self_Service/dashboard/Self_Service.html",
+    "dashboard_controller_path": "./modules/Self_Service/dashboard/Self_Service.php",
+    "view_path": "./modules/Self_Service/views/Self_Service.html",
+    "migration_path": "%%PHINX_CONFIG_DIR%%/modules/Self_Service/migrations"
+}
