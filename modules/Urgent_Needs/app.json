@@ -1,0 +1,9 @@
+{
+    "module_name": "Urgent Needs",
+    "module_route": "Urgent_Needs",
+    "module_root": "./modules/Urgent_Needs",
+    "dashboard_path": "./modules/Urgent_Needs/dashboard/Urgent_NeedsDash.html",
+    "dashboard_controller_path": "./modules/Urgent_Needs/dashboard/Urgent_NeedsDash.php",
+    "view_path": "/modules/Urgent_Needs/views/Urgent_Needs.html",
+    "migration_path": "%%PHINX_CONFIG_DIR%%/modules/Urgent_Needs/migrations"
+}
