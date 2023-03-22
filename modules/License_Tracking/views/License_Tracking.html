@@ -18,9 +18,9 @@
                     <tr>
                         <th data-field="softwareName" data-sortable="true" scope="col">Software Name</th>
                         <th data-field="softwareVersion" data-sortable="true" scope="col">Software Version</th>
-                        <th data-field="totalPurchased" data-sortable="true" scope="col">Total Purchased</th>
-                        <th data-field="managedInstallations" data-sortable="true" scope="col">Managed Installations</th>
-                        <th data-field="remaining" data-sortable="true" scope="col">Remaining</th>
+                        <th data-field="totalPurchased" data-sortable="true" scope="col">Quantity Purchased</th>
+                        <th data-field="managedInstallations" data-sortable="true" scope="col">Quantity Used</th>
+                        <th data-field="remaining" data-sortable="true" scope="col">Quantity Remaining</th>
                         <th data-field="complianceStatus" data-sortable="true" scope="col">Compliance Status</th>
                         <th data-field="actions" data-sortable="false" scope="col">Actions</th>
                         <th data-field="networkInstallations" data-sortable="true" scope="col">Network Installations</th>
@@ -61,9 +61,9 @@
                                     </a> <br>
 
 
-                                    <button type="button" class="btn btn-info font-Montserrat f-weight-400">
+                                    <a role="button" href="/view-lic?id={{ license.id }}" class="btn button-accent font-Montserrat f-weight-400">
                                         View
-                                    </button> 
+                                    </a> <br>
     
                                
                                 <!-- <button type="button" class="btn btn-danger">

@@ -36,12 +36,12 @@
                     <input id="version" name="version" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.version}}"/>
                 </div>
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Total Purchased: </label>
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Purchased: </label>
                     <input id="totalPurchased" name="totalPurchased" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.totalPurchased}}" />
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Managed Installations: </label>
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Used: </label>
                     <input id="managedInstallations" name="managedInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.managedInstallations}}" />
                 </div>
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
@@ -58,6 +58,13 @@
                     <input type="hidden" name="id" value="{{currentLicense.id}}">
 
                     <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="addLicenseInfo" value="Save" >
+
+                </div>
+
+                
+                <div class="col-sm-1 d-grid">
+                    
+                    <a class= "btn btn-outline-primary" href="/License_Tracking" role="button"> Cancel</a>
 
                 </div>
 
