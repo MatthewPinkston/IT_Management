@@ -17,28 +17,28 @@
                 <thead class="table-light">
                     <tr>
                         <th data-field="State" data-sortable="true" scope="col">State</th>
-                        <th data-field="Item #" data-sortable="true" scope="col">Item #</th>
-                        <th data-field="Asset Name" data-sortable="true" scope="col">Asset Name</th>
-                        <th data-field="Asset Type" data-sortable="true" scope="col">Asset Type</th>
-                        <th data-field="Tag #" data-sortable="true" scope="col">Tag #</th>
-                        <th data-field="Date Purchased" data-sortable="true" scope="col">Date Purchased</th>
-                        <th data-field="Location" data-sortable="true" scope="col">Location</th>
-                        <th data-field="Manufacturer Support" data-sortable="true" scope="col">Manufacturer Support</th>
-                        <th data-field="Actions (CRUD)" data-sortable="true" scope="col">Actions (CRUD)</th>
+                        <th data-field="assetId" data-sortable="true" scope="col">Item #</th>
+                        <th data-field="assetName" data-sortable="true" scope="col">Asset Name</th>
+                        <th data-field="assetType" data-sortable="true" scope="col">Asset Type</th>
+                        <th data-field="tagNumber" data-sortable="true" scope="col">Tag #</th>
+                        <th data-field="datePurchased" data-sortable="true" scope="col">Date Purchased</th>
+                        <th data-field="location" data-sortable="true" scope="col">Location</th>
+                        <th data-field="manufacturerSupport" data-sortable="true" scope="col">Manufacturer Support</th>
+                        <th data-field="actions" data-sortable="true" scope="col">Actions (CRUD)</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for asset in assets %}
                         <tr>
                             <td class="font-Montserrat f-weigth-400">{{ asset.state }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ asset.item }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ asset.assetname }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ asset.assettype }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ asset.tag }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ asset.datepurchased }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.assetId }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.assetName }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.assetType }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.tagNumber }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.datePurchased }}</td>
                             <td class="font-Montserrat f-weigth-400">{{ asset.location }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ asset.manufacturersupport }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ asset.actions(CRUD) }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.manufacturerSupport }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.actions }}</td>
                             <!-- <td class="font-Montserrat f-weigth-400">
                                 {% if license.complianceStatus == 'Under Licensed' %}
                                     <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
