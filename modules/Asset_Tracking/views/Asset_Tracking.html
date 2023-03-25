@@ -1,0 +1,96 @@
+{% extends '/views/templates/mainTemplate.html' %}
+
+{% block content %}
+    <div class="container-fluid rppit-mc-p1">
+        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Asset Tracking</h1>
+            <div class="w-100 p-3" >
+            <table
+                id="table"
+                data-toggle="table"
+                data-search="true"
+                data-filter-control="true" 
+                data-show-export="true"
+                data-click-to-select="true"
+                data-toolbar="#toolbar"
+                class="table text-center table-responsive" 
+            >
+                <thead class="table-light">
+                    <tr>
+                        <th data-field="State" data-sortable="true" scope="col">State</th>
+                        <th data-field="assetId" data-sortable="true" scope="col">Item #</th>
+                        <th data-field="assetName" data-sortable="true" scope="col">Asset Name</th>
+                        <th data-field="assetType" data-sortable="true" scope="col">Asset Type</th>
+                        <th data-field="tagNumber" data-sortable="true" scope="col">Tag #</th>
+                        <th data-field="datePurchased" data-sortable="true" scope="col">Date Purchased</th>
+                        <th data-field="location" data-sortable="true" scope="col">Location</th>
+                        <th data-field="manufacturerSupport" data-sortable="true" scope="col">Manufacturer Support</th>
+                        <th data-field="actions" data-sortable="true" scope="col">Actions (CRUD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asset in assets %}
+                        <tr>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.state }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.assetId }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.assetName }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.assetType }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.tagNumber }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.datePurchased }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.location }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.manufacturerSupport }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ asset.actions }}</td>
+                            <!-- <td class="font-Montserrat f-weigth-400">
+                                {% if license.complianceStatus == 'Under Licensed' %}
+                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
+                                {% elseif license.complianceStatus == 'Over Licensed' %}
+                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary bg-primary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
+                                {% else %}
+                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-secondary bg-secondary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
+                                {% endif %}
+                            </td> -->
+                            <!-- <td class="">
+                                
+
+                                    <a role="button" href="/edit-lic?id={{ license.id }}" class="btn button-accent font-Montserrat f-weight-400">
+                                        edit
+                                    </a>
+
+
+                                
+                                <button type="button" class="btn btn-danger">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+
+                                <br><br>
+
+
+                                <button type="button" class="btn btn-info font-Montserrat f-weight-400">
+                                    Add
+                                </button> 
+
+
+
+
+
+
+                            </td>
+                            <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td> -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-sm justify-content-end">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1"><i class="bi bi-caret-left-fill"></i></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#"><i class="bi bi-caret-right-fill"></i></a>
+              </li>
+            </ul>
+          </nav>
+    </div>
+{% endblock %}
