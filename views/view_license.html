@@ -6,6 +6,17 @@
         
         <div class="w-100 p-3">
 
+            <style>
+                div {
+                  margin-bottom: 2px;
+                }
+                label {
+                  display: inline-block;
+                  width: 200px;
+                  text-align: right;
+                }
+              </style>
+
  
             <form action="view-lic" method="POST">
       
@@ -30,16 +41,7 @@
                     <input id="managedInstallations" name="managedInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.managedInstallations}}" disabled/>
                 </div>
                 
-                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">network Installations: </label>
-                    <input id="networkInstallations" name="networkInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.networkInstallations}}" disabled/>
-                </div>
-              
-                <!-- <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <input type="hidden" name="id" value="{{currentLicense.id}}">
-                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="viewLicenseInfo" value="Save" >
-                </div> -->
-
+               
                 <div class="col-sm-1 d-grid">
                     
                     <a class= "btn btn-outline-primary" href="/License_Tracking" role="button"> Close</a>
