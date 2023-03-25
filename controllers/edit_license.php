@@ -16,7 +16,7 @@
 
     if(isset($_POST['changeLicenseInfo']) && $_POST['changeLicenseInfo'] === 'Save'){
         
-        $sql = "UPDATE License_Tracking SET name=?, version=?, totalPurchased=?, managedInstallations=?, networkInstallations=? WHERE id=?;";
+        $sql = "UPDATE License_Tracking SET ItemNumber=?, Name=?, Version=?, QuantityPurchased=?, QuantityUsed=?, QuantityRemaining=?, LicenseStatus=?, WHERE id=?;";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -26,7 +26,7 @@
 
         else{
             
-            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['name'], $_POST['version'], $_POST['totalPurchased'], $_POST['managedInstallations'], $_POST['networkInstallations'], $_POST['id']);
+            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['ItemNumber'], ['Name'], $_POST['Version'], $_POST['QuantityPurchased'], $_POST['QuantityUsed'], $_POST['QuantityRemaining'], $_POST['LicenseStatus'], $_POST['id']);
 
             mysqli_stmt_execute($stmt);
 

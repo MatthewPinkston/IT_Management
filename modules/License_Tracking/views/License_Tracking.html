@@ -16,24 +16,24 @@
             >
                 <thead class="table-light">
                     <tr>
-                        <th data-field="softwareName" data-sortable="true" scope="col">Software Name</th>
-                        <th data-field="softwareVersion" data-sortable="true" scope="col">Software Version</th>
-                        <th data-field="totalPurchased" data-sortable="true" scope="col">Quantity Purchased</th>
-                        <th data-field="managedInstallations" data-sortable="true" scope="col">Quantity Used</th>
-                        <th data-field="remaining" data-sortable="true" scope="col">Quantity Remaining</th>
-                        <th data-field="complianceStatus" data-sortable="true" scope="col">Compliance Status</th>
-                        <th data-field="actions" data-sortable="false" scope="col">Actions</th>
-                        <!-- <th data-field="networkInstallations" data-sortable="true" scope="col">Network Installations</th> -->
+                        <th data-field="Name" data-sortable="true" scope="col">Software Name</th>
+                        <th data-field="ItemNumber" data-sortable="true" scope="col">Item #</th>                        
+                        <th data-field="Version" data-sortable="true" scope="col">Software Version</th>
+                        <th data-field="QuantityPurchased" scope="col">Quantity Purchased</th>
+                        <th data-field="QuantityUsed" data-sortable="true" scope="col">Quantity Used</th>
+                        <th data-field="QuantityRemaining" data-sortable="true" scope="col">Quantity Remaining</th>
+                        <th data-field="Actions(CRUD)" data-sortable="false" scope="col">Actions</th>
+                        <th data-field="LicenseStatus" data-sortable="true" scope="col">Compliance Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for license in licenses %}
                         <tr>
-                            <td class="font-Montserrat f-weigth-400">{{ license.name }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ license.version }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ license.totalPurchased }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ license.managedInstallations }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ license.totalPurchased - license.managedInstallations }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ license.Name }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ license.Version }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ license.QuantityPurchased }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ license.QuantityUsed }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ license.QuantityPurchased - license.QuantityUsed }}</td>
                             <td class="font-Montserrat f-weigth-400">
                                 {% if license.complianceStatus == 'Under Licensed' %}
                                     <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
