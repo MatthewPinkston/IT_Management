@@ -30,19 +30,11 @@
                     {% for license in licenses %}
                         <tr>
                             <td class="font-Montserrat f-weigth-400">{{ license.Name }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ license.Version }}</td>
+                            <td class="font-Montserrat f-weigth-400">{{ license.ItemNumber }}</td>                            <td class="font-Montserrat f-weigth-400">{{ license.Version }}</td>
                             <td class="font-Montserrat f-weigth-400">{{ license.QuantityPurchased }}</td>
                             <td class="font-Montserrat f-weigth-400">{{ license.QuantityUsed }}</td>
                             <td class="font-Montserrat f-weigth-400">{{ license.QuantityPurchased - license.QuantityUsed }}</td>
-                            <td class="font-Montserrat f-weigth-400">
-                                {% if license.complianceStatus == 'Under Licensed' %}
-                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                                {% elseif license.complianceStatus == 'Over Licensed' %}
-                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary bg-primary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                                {% else %}
-                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-secondary bg-secondary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                                {% endif %}
-                            </td>
+                            
                             <td class="">
 
                                 <div >
@@ -88,7 +80,16 @@
 
 
                             </td>
-                            <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td>
+                            <td class="font-Montserrat f-weigth-400">
+                                {% if license.LicenseStatus == 'Under Licensed' %}
+                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.LicenseStatus}}</small>
+                                {% elseif license.LicenseStatus == 'Over Licensed' %}
+                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary bg-primary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.LicenseStatus}}</small>
+                                {% else %}
+                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-secondary bg-secondary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.LicenseStatus}}</small>
+                                {% endif %}
+                            </td>
+                            <!-- <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td> -->
                         </tr>
                     {% endfor %}
                 </tbody>
