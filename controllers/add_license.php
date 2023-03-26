@@ -16,12 +16,13 @@
 
     if(isset($_POST['addLicenseInfo']) && $_POST['addLicenseInfo'] === 'Save'){
         $form = array(
-            'ItemNumber' => $_POST['ItemNumber'],
-            'Name' => $_POST['Name'],
-            'Version' => $_POST['Version'],
-            'QuanitityPurchased' => $_POST['QuantityPurchased'],
-            'QuantityUsed' => $_POST['QuanitityUsed'],
-            'QuantityRemaining' => $_POST['QuantityRemaining']
+            /* 'ItemNumber' => $_POST['ItemNumber'], */
+            'name' => $_POST['name'],
+            'itemNumber' => $_POST['itemNumber'],
+            'version' => $_POST['version'],
+            'quantityPurchased' => $_POST['quantityPurchased'],
+            'quantityUsed' => $_POST['quantityUsed']
+            /* 'QuantityRemaining' => $_POST['QuantityRemaining'] */
                     );
 
         if(emptyInput($form)){
@@ -33,7 +34,7 @@
 
         }
 
-        $sql = "INSERT INTO License_Tracking(ItemNumber, Name, Version, QuantityPurchased, QuantityUsed, QauntityRemaining, VALUES(?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO License_Tracking (name, itemNumber, version, quantityPurchased, quantityUsed) VALUES(?, ?, ?, ?, ?);";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -46,7 +47,7 @@
             $myuid = uniqid('', true);
             $myuid = substr($myuid, 0, 8) . '-' . substr($myuid, 8, 4) . '-' . substr($myuid, 12, 4) . '-' . substr($myuid, 16, 4) . '-' . substr($myuid, 20);
             // mysqli_stmt_bind_param($stmt, "sssssss", $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['question1'], $_POST['question2'], $_POST['question3'], $_SESSION['current_user']['id']);
-            mysqli_stmt_bind_param($stmt, "ssssss", $myuid, $_POST['Name'], $_POST['Version'], $_POST['QuantityPurchased'], $_POST['QuantityUsed'], $_POST['QuantityRemaining']);
+            mysqli_stmt_bind_param($stmt, "sssss", /* $myuid, */ $_POST['name'], $_POST['itemNumber'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed']);
 
             mysqli_stmt_execute($stmt);
 
@@ -69,6 +70,6 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
 
-        // 'currentLicense' => $row,
+        //'currentLicense' => $row,
         'error' => $error,
     ]);
