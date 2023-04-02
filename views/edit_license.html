@@ -6,41 +6,62 @@
         
         <div class="w-100 p-3">
 
+            <style>
+                div {
+                  margin-bottom: 2px;
+                }
+                label {
+                  display: inline-block;
+                  width: 200px;
+                  text-align: right;
+                }
+              </style>
+
  
             <form action="edit-lic" method="POST">
       
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Software Name: </label>
-                    <input id="name" name="name" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.name}}" >
+                    <input id="Name" name="Name" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.Name}}" >
+                </div>
+
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Item #: </label>
+                    <input id="ItemNumber" name="ItemNumber" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.ItemNumber}}" >
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Software Version: </label>
-                    <input id="version" name="version" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.version}}"/>
+                    <input id="Version" name="Version" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.version}}"/>
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Total Purchased: </label>
-                    <input id="totalPurchased" name="totalPurchased" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.totalPurchased}}" />
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Purchased: </label>
+                    <input id="QuanitityPurchased" name="QuantityPurchased" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.QuantityPurchased}}" />
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Managed Installations: </label>
-                    <input id="managedInstallations" name="managedInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.managedInstallations}}" />
-                </div>
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Used: </label>
+                    <input id="QuanitityUsed" name="QuanitityUsed" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.QuanitityUsed}}" />
+                </div>                          
 
-                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">network Installations: </label>
-                    <input id="networkInstallations" name="networkInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.networkInstallations}}" />
-                </div>
-              
+                <!-- <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Remaining: </label>
+                    <input id="QuanitityRemaining" name="QuanitityRemaining" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.QuanitityRemaining}}" />
+                </div> --> 
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
 
                     <input type="hidden" name="id" value="{{currentLicense.id}}">
 
                     <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="changeLicenseInfo" value="Save" >
+
+                </div>
+
+                <div class="col-sm-1 d-grid">
+                    
+                    <a class= "btn btn-outline-primary" href="/License_Tracking" role="button"> Cancel</a>
 
                 </div>
 

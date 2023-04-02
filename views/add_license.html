@@ -22,6 +22,25 @@
                 </label>
             -->
 
+
+
+            <style>
+                div {
+                  margin-bottom: 2px;
+                }
+                label {
+                  display: inline-block;
+                  width: 200px;
+                  text-align: right;
+                }
+              </style>
+
+
+
+
+
+
+
             <form action="add-lic" method="POST">
       
 
@@ -30,34 +49,42 @@
                     <input id="name" name="name" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.name}}" >
                 </div>
 
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Item #: </label>
+                    <input id="itemNumber" name="itemNumber" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.itemNumber}}" >
+                </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Software Version: </label>
                     <input id="version" name="version" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.version}}"/>
                 </div>
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Total Purchased: </label>
-                    <input id="totalPurchased" name="totalPurchased" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.totalPurchased}}" />
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Purchased: </label>
+                    <input id="quantityPurchased" name="quantityPurchased" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.quantityPurchased}}" />
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Managed Installations: </label>
-                    <input id="managedInstallations" name="managedInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.managedInstallations}}" />
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Used: </label>
+                    <input id="quantityUsed" name="quantityUsed" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.quantityUsed}}" />
                 </div>
-                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Network Installations: </label>
-                    <input id="networkInstallations" name="networkInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.networkInstallations}}"/>
-                </div>
+
                 <!-- <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Place of Birth (City): </label>
-                    <input id="question3" name="question3" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.question3}}" disabled/>
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Remaining: </label>
+                    <input id="managedInstallations" name="managedInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.managedInstallations}}" />
                 </div> -->
-
+                
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
 
                     <input type="hidden" name="id" value="{{currentLicense.id}}">
 
-                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="addLicenseInfo" value="Save" >
+                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" href="/License_Tracking" name="addLicenseInfo" value="Save" >
+
+                </div>
+
+                
+                <div class="col-sm-1 d-grid">
+                    
+                    <a class= "btn btn-outline-primary" href="/License_Tracking" role="button"> Cancel</a>
 
                 </div>
 
