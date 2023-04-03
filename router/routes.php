@@ -46,7 +46,8 @@
     post('/add-lic', './controllers/add_license.php');
     post('/delete-lic', './controllers/delete_license.php');
     post('/view-lic', './controllers/view_license.php');
-    get('/add-asset', './controllers/view_asset.php');
+
+    post('/add-asset', './controllers/add_asset.php');
 
     // For GET or POST
     // The 404.php which is inside the views folder will be called
