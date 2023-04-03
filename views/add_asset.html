@@ -4,25 +4,7 @@
     <div class="container rppit-mc-p1">
         <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Add Asset</h1>
         
-        <div class="w-100 p-3">
-
-            <!--
-            <button type="button" class="btn btn-light" ><strong> Assets</strong></button>
-            <button type="button" class="btn btn-light" ><strong> Tickets</strong></button>
-            <button type="button" class="btn btn-light" ><strong> Checkouts</strong></button>
-            -->
-
-            <!-- This is from navbar.html line 10-->
-            <!--Class name changed from w-25 to w-100-->
-
-
-            <!--
-            <label>Name
-                <input id="User" name="Name" type="text"/>
-                </label>
-            -->
-
-
+        <div class="w-100 p-3">       
 
             <style>
                 div {
@@ -36,12 +18,7 @@
               </style>
 
 
-
-
-
-
-
-            <form action="add-lic" method="POST">
+            <form action="add-asset" method="POST">
       
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
@@ -82,11 +59,6 @@
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Manufacturer Support: </label>
                     <input id="manufacturerSupport" name="manufacturerSupport" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.manufacturerSupport}}" />
                 </div>
-
-                <!-- <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Remaining: </label>
-                    <input id="managedInstallations" name="managedInstallations" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.managedInstallations}}" />
-                </div> -->
                 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
 
@@ -99,7 +71,7 @@
                 
                 <div class="col-sm-1 d-grid">
                     
-                    <a class= "btn btn-outline-primary" href="/License_Tracking" role="button"> Cancel</a>
+                    <a class= "btn btn-outline-primary" href="/Asset_Tracking" role="button"> Cancel</a>
 
                 </div>
 
