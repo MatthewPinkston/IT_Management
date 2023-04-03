@@ -24,7 +24,6 @@
 
         return $assets;
     }
-       /*  var_dump(getAssets($conn)); exit; */
     echo $_SESSION['TWIG'] ->render(getValue($app, 'view_path'), [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
