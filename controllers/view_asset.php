@@ -14,9 +14,9 @@
 
     $error = null;
 
-    if(isset($_POST['changeLicenseInfo']) && $_POST['changeLicenseInfo'] === 'Save'){
+    if(isset($_POST['viewAssetInfo']) && $_POST['viewAssetInfo'] === 'Save'){
         
-        $sql = "UPDATE License_Tracking SET itemNumber=?, name=?, version=?, quantityPurchased=?, quantityUsed=?, quantityRemaining=?, licenseStatus=?, WHERE id=?;";
+        $sql = "SELECT FROM Asset_Tracking SET state=?, version=?, assetType=?, tagNumber=?, datePurchased=?, location=?, manufacturerSupport=?, WHERE AssetId=?;";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -26,7 +26,7 @@
 
         else{
             
-            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['itemNumber'], ['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['quantityRemaining'], $_POST['licenseStatus'], $_POST['id']);
+            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['state'], $_POST['assetId'], $_POST['version'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_Post['manufacturerSupport']);
 
             mysqli_stmt_execute($stmt);
 
@@ -34,7 +34,7 @@
 
             mysqli_stmt_close($stmt);
 
-            $_GET['id']=$_POST['id'];
+            $_GET['assetId']=$_POST['assetId'];
 
             $error = 'none';
         }
@@ -42,15 +42,19 @@
 
     if(isset($_GET['id']) && $_GET['id'] !== ''){
         
-            $sql = "SELECT * FROM License_Tracking WHERE id='".$_GET['id']."'";
+            $sql = "SELECT * FROM Asset_Tracking WHERE assetId='".$_GET['assetId']."'";
             // echo $sql;exit;
             $res = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($res);
+
+           
+           
+
             
      
     }
     
-    echo $_SESSION['TWIG']->render('/views/edit_license.html', [
+    echo $_SESSION['TWIG']->render('/views/view_asset.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
@@ -58,7 +62,6 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
         
-        'currentLicense' => ['id'=>isset($_GET['id'])?$_GET['id']:''],
+        #'currentAsset' => $row,
         'error' => $error,
     ]);
-?>
