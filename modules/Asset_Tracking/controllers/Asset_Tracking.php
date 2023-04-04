@@ -32,6 +32,6 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar */
 
-         'assets' => getAssets($conn)
+        'assets' => getAssets($conn)
      ]);
 /* echo 'bam'; */

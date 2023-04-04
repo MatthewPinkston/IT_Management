@@ -35,7 +35,7 @@
 
         }
 
-        $sql = "INSERT INTO asset (state, assetId, assetName, assetType, tagNumber, datePurchased, location, manufacturerSupport) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO `asset` (state, assetId, assetName, assetType, tagNumber, datePurchased, location, manufacturerSupport) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
 
         $stmt = mysqli_prepare($conn, $sql);
 
