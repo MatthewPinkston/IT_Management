@@ -13,6 +13,7 @@
     get('/delete-lic', './controllers/delete_license.php');
     get('/view-lic', './controllers/view_license.php');
     get('/add-asset', './controllers/add_asset.php');
+    get('/edit-asset', './controllers/edit_asset.php');
 
     if(isset($_SESSION['user_roles']) && checkPrivilege('view_users', $_SESSION['user_roles'])){
         get('/users', './controllers/users.php');
@@ -46,8 +47,14 @@
     post('/add-lic', './controllers/add_license.php');
     post('/delete-lic', './controllers/delete_license.php');
     post('/view-lic', './controllers/view_license.php');
+ Team1_Staging_Will
     get('/add-asset', './controllers/view_asset.php');
     get('/view-asset', './controllers/view_asset.php');
+=======
+
+    post('/add-asset', './controllers/add_asset.php');
+    post('/edit-asset', './controllers/edit_asset.php');
+ Team1_Staging
 
     // For GET or POST
     // The 404.php which is inside the views folder will be called
