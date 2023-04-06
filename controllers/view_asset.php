@@ -16,7 +16,7 @@
 
     if(isset($_POST['viewAssetInfo']) && $_POST['viewAssetInfo'] === 'Save'){
         
-        $sql = "SELECT FROM Asset_Tracking SET state=?, version=?, assetType=?, tagNumber=?, datePurchased=?, location=?, manufacturerSupport=?, WHERE AssetId=?;";
+        $sql = "SELECT FROM assets SET state=?, version=?, assetType=?, tagNumber=?, datePurchased=?, location=?, manufacturerSupport=?, WHERE assetId=?;";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -40,9 +40,9 @@
         }
     }
 
-    if(isset($_GET['id']) && $_GET['id'] !== ''){
+    if(isset($_GET['assetId']) && $_GET['assetId'] !== ''){
         
-            $sql = "SELECT * FROM Asset_Tracking WHERE assetId='".$_GET['assetId']."'";
+            $sql = "SELECT * FROM assets WHERE `assetId`='".$_GET['assetId']."'";
             // echo $sql;exit;
             $res = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($res);
@@ -53,7 +53,7 @@
             
      
     }
-    
+    //var_dump($row);exit;
     echo $_SESSION['TWIG']->render('/views/view_asset.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
@@ -62,6 +62,6 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
         
-        #'currentAsset' => $row,
+        'currentAsset' => $row,
         'error' => $error,
     ]);
