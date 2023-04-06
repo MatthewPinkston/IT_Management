@@ -61,7 +61,7 @@
         'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
-
+        
         'currentLicense' => $row,
         'error' => $error,
     ]);
