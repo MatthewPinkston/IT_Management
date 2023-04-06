@@ -16,7 +16,7 @@
 
     if(isset($_POST['viewLicenseInfo']) && $_POST['viewLicenseInfo'] === 'Save'){
         
-        $sql = "SELECT FROM License_Tracking SET name=?, version=?, totalPurchased=?, managedInstallations=?, networkInstallations=? WHERE id=?;";
+        $sql = "SELECT FROM License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE itemNumber=?;";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -26,7 +26,7 @@
 
         else{
             
-            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['name'], $_POST['version'], $_POST['totalPurchased'], $_POST['managedInstallations'], $_POST['networkInstallations'], $_POST['id']);
+            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['itemNumber']);
 
             mysqli_stmt_execute($stmt);
 
@@ -34,15 +34,15 @@
 
             mysqli_stmt_close($stmt);
 
-            $_GET['id']=$_POST['id'];
+            $_GET['itemNumber']=$_POST['itemNumber'];
 
             $error = 'none';
         }
     }
 
-    if(isset($_GET['id']) && $_GET['id'] !== ''){
+    if(isset($_GET['itemNumber']) && $_GET['itemNumber'] !== ''){
         
-            $sql = "SELECT * FROM License_Tracking WHERE id='".$_GET['id']."'";
+            $sql = "SELECT * FROM License_Tracking WHERE `itemNumber`='".$_GET['itemNumber']."'";
             // echo $sql;exit;
             $res = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($res);

@@ -2,27 +2,27 @@
 
 {% block content %}
     <div class="container rppit-mc-p1">
-        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Delete License</h1>
+        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Delete Asset</h1>
         
         <div class="w-100 p-3">
 
         
-            <form action="delete-lic" method="POST">
+            <form action="delete-asset" method="POST">
       
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <p>Would you like to delete this license?</p> <br> <br>
+                    <p>Would you like to delete this asset?</p> <br> <br>
                 </div>
 
-                    <input type="hidden" name="itemNumber" value="{{currentLicense.itemNumber}}">
+                    <input type="hidden" name="id" value="{{currentAsset.assetId}}">
 
-                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="deleteLicenseInfo" value="Delete" >
+                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="deleteAssetInfo" value="Delete" >
 
                 </div>
 
                 <div class="col-sm-1 d-grid">
                     
-                    <a class= "btn btn-outline-primary" href="/License_Tracking" role="button" > Cancel</a>
+                    <a class= "btn btn-outline-primary" href="/Asset_Tracking" role="button" > Cancel</a>
 
                 </div>
 
