@@ -26,23 +26,23 @@
 
         else{
             
-            mysqli_stmt_bind_param($stmt, "ssssssss", $_POST['state'], $_POST['assetName'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_POST['manufacturerSupport'], $_POST['id']);
-
+            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['state'], $_POST['assetId'], $_POST['version'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_Post['manufacturerSupport']);
+           
             mysqli_stmt_execute($stmt);
 
             $res = mysqli_stmt_get_result($stmt);
 
             mysqli_stmt_close($stmt);
 
-            $_GET['id']=$_POST['id'];
+            $_GET['assetId']=$_POST['assetId'];
 
             $error = 'none';
         }
     }
 
-    if(isset($_GET['id']) && $_GET['id'] !== ''){
+    if(isset($_GET['assetId']) && $_GET['assetId'] !== ''){
         
-        $sql = "SELECT * FROM `assets` WHERE id='".$_GET['id']."'";
+        $sql = "SELECT * FROM `assets` WHERE assetId='".$_GET['assetId']."'";
         // echo $sql;exit;
         $res = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($res);
