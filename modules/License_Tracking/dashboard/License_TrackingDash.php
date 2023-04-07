@@ -17,6 +17,6 @@
         'overLicensed' => $overLicensedCount['count'],
         'underLicensed' => $underLicensedCount['count'],
         'inCompliance' => $inComplianceCount['count']
-    );
+   );
 	
 ?>
