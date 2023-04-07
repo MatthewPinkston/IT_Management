@@ -13,7 +13,11 @@
     get('/delete-lic', './controllers/delete_license.php');
     get('/view-lic', './controllers/view_license.php');
     get('/add-asset', './controllers/add_asset.php');
+ Team1_Staging_Adnan
+    get('/delete-asset', './controllers/delete_asset.php');
+=======
     get('/edit-asset', './controllers/edit_asset.php');
+ Team1_Staging
 
     if(isset($_SESSION['user_roles']) && checkPrivilege('view_users', $_SESSION['user_roles'])){
         get('/users', './controllers/users.php');
@@ -53,7 +57,11 @@
 =======
 
     post('/add-asset', './controllers/add_asset.php');
+ Team1_Staging_Adnan
+    post('/delete-asset', './controllers/delete_asset.php');
+=======
     post('/edit-asset', './controllers/edit_asset.php');
+ Team1_Staging
  Team1_Staging
 
     // For GET or POST

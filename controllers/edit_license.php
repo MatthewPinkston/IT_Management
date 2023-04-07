@@ -16,7 +16,11 @@
 
     if(isset($_POST['changeLicenseInfo']) && $_POST['changeLicenseInfo'] === 'Save'){
         
+ Team1_Staging_Adnan
+        $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE itemNumber=?;";
+
         $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE id=?;";
+ Team1_Staging
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -26,7 +30,11 @@
 
         else{
             
+ Team1_Staging_Adnan
+            mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['itemNumber']);
+
             mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['id']);
+ Team1_Staging
 
             mysqli_stmt_execute($stmt);
 
@@ -34,24 +42,35 @@
 
             mysqli_stmt_close($stmt);
 
-            $_GET['id']=$_POST['id'];
+            $_GET['itemNumber']=$_POST['itemNumber'];
 
             $error = 'none';
         }
     }
 
-    if(isset($_GET['id']) && $_GET['id'] !== ''){
+    if(isset($_GET['itemNumber']) && $_GET['itemNumber'] !== ''){
         
+ Team1_Staging_Adnan
+            $sql = "SELECT * FROM License_Tracking WHERE `itemNumber`='".$_GET['itemNumber']."'";
+            // echo $sql;exit;
+            $res = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($res);
+
+           
+           
+
+
         $sql = "SELECT * FROM License_Tracking WHERE id='".$_GET['id']."'";
         // echo $sql;exit;
         $res = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($res);
 
            
+ Team1_Staging
             
      
     }
-    
+    //var_dump($row);exit;
     echo $_SESSION['TWIG']->render('/views/edit_license.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
