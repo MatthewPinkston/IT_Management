@@ -17,7 +17,11 @@
     if(isset($_POST['deleteLicenseInfo']) && $_POST['deleteLicenseInfo'] === 'Delete'){
         
 
+ Team1_Staging_Adnan
+        $sql = "DELETE FROM License_Tracking WHERE itemNumber=?";
+
         $sql = "DELETE FROM `License_Tracking` WHERE id=?";
+ Team1_Staging
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -27,7 +31,7 @@
 
         else{
 
-            mysqli_stmt_bind_param($stmt, "s", $_POST['id']);
+            mysqli_stmt_bind_param($stmt, "s", $_POST['itemNumber']);
 
             mysqli_stmt_execute($stmt);
 
@@ -62,6 +66,6 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
 
-        'currentLicense' => ['id'=>isset($_GET['id'])?$_GET['id']:''],
+        'currentLicense' => ['itemNumber'=>isset($_GET['itemNumber'])?$_GET['itemNumber']:''],
         'error' => $error,
     ]);
