@@ -17,11 +17,11 @@
     if(isset($_POST['deleteLicenseInfo']) && $_POST['deleteLicenseInfo'] === 'Delete'){
         
 
- Team1_Staging_Adnan
+ 
         $sql = "DELETE FROM License_Tracking WHERE itemNumber=?";
 
-        $sql = "DELETE FROM `License_Tracking` WHERE id=?";
- Team1_Staging
+        //$sql = "DELETE FROM `License_Tracking` WHERE id=?";
+
 
         $stmt = mysqli_prepare($conn, $sql);
 
