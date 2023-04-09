@@ -19,7 +19,7 @@
  
         $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE itemNumber=?;";
 
-        $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE id=?;";
+        // $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE id=?;";
  
 
         $stmt = mysqli_prepare($conn, $sql);
@@ -33,7 +33,7 @@
  
             mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['itemNumber']);
 
-            mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['id']);
+            // mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['id']);
 
 
             mysqli_stmt_execute($stmt);
