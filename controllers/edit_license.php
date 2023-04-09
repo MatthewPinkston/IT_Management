@@ -16,11 +16,11 @@
 
     if(isset($_POST['changeLicenseInfo']) && $_POST['changeLicenseInfo'] === 'Save'){
         
- Team1_Staging_Adnan
+ 
         $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE itemNumber=?;";
 
         $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE id=?;";
- Team1_Staging
+ 
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -30,11 +30,11 @@
 
         else{
             
- Team1_Staging_Adnan
+ 
             mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['itemNumber']);
 
             mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['id']);
- Team1_Staging
+
 
             mysqli_stmt_execute($stmt);
 
@@ -50,7 +50,7 @@
 
     if(isset($_GET['itemNumber']) && $_GET['itemNumber'] !== ''){
         
- Team1_Staging_Adnan
+ 
             $sql = "SELECT * FROM License_Tracking WHERE `itemNumber`='".$_GET['itemNumber']."'";
             // echo $sql;exit;
             $res = mysqli_query($conn, $sql);
@@ -60,13 +60,13 @@
            
 
 
-        $sql = "SELECT * FROM License_Tracking WHERE id='".$_GET['id']."'";
+        //$sql = "SELECT * FROM License_Tracking WHERE itemNumber='".$_GET['itemNumber']."'";
         // echo $sql;exit;
-        $res = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($res);
+        //$res = mysqli_query($conn, $sql);
+        //$row = mysqli_fetch_assoc($res);
 
            
- Team1_Staging
+ 
             
      
     }
@@ -79,7 +79,7 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
         
-        'currentLicense' => ['id'=>isset($_GET['id'])?$_GET['id']:''],
+        'currentLicense' => $row,
         'error' => $error,
     ]);
 ?>

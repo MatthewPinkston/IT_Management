@@ -51,7 +51,7 @@
     post('/delete-lic', './controllers/delete_license.php');
     post('/view-lic', './controllers/view_license.php');
 
-    get('/add-asset', './controllers/view_asset.php');
+    //get('/add-asset', './controllers/view_asset.php');
     get('/view-asset', './controllers/view_asset.php');
 
 
