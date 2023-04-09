@@ -16,14 +16,14 @@
 
     if(isset($_POST['addassetInfo']) && $_POST['addassetInfo'] === 'Save'){
         $form = array(
-            
+
             'state' => $_POST['state'],
             'assetId' => $_POST['assetId'],
             'assetName' => $_POST['assetName'],
             'assetType' => $_POST['assetType'],
             'tagNumber' => $_POST['tagNumber'],
             'datePurchased' => $_POST['datePurchased'],
-            'location' => $_Post['location'],
+            'location' => $_POST['location'],
             'manufacturerSupport' => $_POST['manufacturerSupport']
                     );
 
@@ -49,7 +49,7 @@
             $myuid = uniqid('', true);
             $myuid = substr($myuid, 0, 8) . '-' . substr($myuid, 8, 4) . '-' . substr($myuid, 12, 4) . '-' . substr($myuid, 16, 4) . '-' . substr($myuid, 20, 4) . '-' . substr($myuid, 24, 4) . '-' . substr($myuid, 28, 4) . '-' . substr($myuid, 32, 4);
             // mysqli_stmt_bind_param($stmt, "sssssss", $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['question1'], $_POST['question2'], $_POST['question3'], $_SESSION['current_user']['id']);
-            mysqli_stmt_bind_param($stmt, "ssssssss", /* $myuid, */ $_POST['state'], $_POST['assetId'], $_POST['assetName'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_Post['manufacturerSupport']);
+            mysqli_stmt_bind_param($stmt, "ssssssss", /* $myuid, */ $_POST['state'], $_POST['assetId'], $_POST['assetName'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_POST['manufacturerSupport']);
 
             mysqli_stmt_execute($stmt);
 
@@ -63,7 +63,7 @@
     }
 
     
-    
+    //var_dump($row);exit;
     echo $_SESSION['TWIG']->render('/views/add_asset.html', [
         'title' => $title, //Expected by the header
         'userstate' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
