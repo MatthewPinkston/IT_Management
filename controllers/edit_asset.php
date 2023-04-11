@@ -16,7 +16,7 @@
 
     if(isset($_POST['changeassetInfo']) && $_POST['changeassetInfo'] === 'Save'){
         
-        $sql = "UPDATE `assets` SET state=?, assetID=?, assetName=?, assetType=?, tagNumber=?, datePurchased=?, location=?, manufacturerSupport=?, WHERE id=?;";
+        $sql = "UPDATE assets SET state=?, assetName=?, assetType=?, tagNumber=?, datePurchased=?, location=?, manufacturerSupport=? WHERE assetId=?;";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -26,23 +26,23 @@
 
         else{
             
-            mysqli_stmt_bind_param($stmt, "ssssssss", $_POST['state'], $_POST['assetName'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_POST['manufacturerSupport'], $_POST['id']);
-
+            mysqli_stmt_bind_param($stmt, "ssssssss", $_POST['state'],$_POST['assetName'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_POST['manufacturerSupport'], $_POST['assetId']);
+           
             mysqli_stmt_execute($stmt);
 
             $res = mysqli_stmt_get_result($stmt);
 
             mysqli_stmt_close($stmt);
 
-            $_GET['id']=$_POST['id'];
+            $_GET['assetId']=$_POST['assetId'];
 
             $error = 'none';
         }
     }
 
-    if(isset($_GET['id']) && $_GET['id'] !== ''){
+    if(isset($_GET['assetId']) && $_GET['assetId'] !== ''){
         
-        $sql = "SELECT * FROM `assets` WHERE id='".$_GET['id']."'";
+        $sql = "SELECT * FROM assets WHERE `assetId`='".$_GET['assetId']."'";
         // echo $sql;exit;
         $res = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($res);
@@ -51,7 +51,7 @@
             
      
     }
-    
+    //var_dump($row);exit;
     echo $_SESSION['TWIG']->render('/views/edit_asset.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
