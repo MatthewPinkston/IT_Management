@@ -24,7 +24,6 @@
 
         return $assets;
     }
-       /*  var_dump(getAssets($conn)); exit; */
     echo $_SESSION['TWIG'] ->render(getValue($app, 'view_path'), [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
@@ -33,6 +32,6 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar */
 
-         'assets' => getAssets($conn)
+        'assets' => getAssets($conn)
      ]);
 /* echo 'bam'; */

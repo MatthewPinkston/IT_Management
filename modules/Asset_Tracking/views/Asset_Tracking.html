@@ -16,7 +16,7 @@
             >
                 <thead class="table-light">
                     <tr>
-                        <th data-field="State" data-sortable="true" scope="col">State</th>
+                        <th data-field="state" data-sortable="true" scope="col">State</th>
                         <th data-field="assetId" data-sortable="true" scope="col">Item #</th>
                         <th data-field="assetName" data-sortable="true" scope="col">Asset Name</th>
                         <th data-field="assetType" data-sortable="true" scope="col">Asset Type</th>
@@ -24,7 +24,7 @@
                         <th data-field="datePurchased" data-sortable="true" scope="col">Date Purchased</th>
                         <th data-field="location" data-sortable="true" scope="col">Location</th>
                         <th data-field="manufacturerSupport" data-sortable="true" scope="col">Manufacturer Support</th>
-                        <th data-field="actions" data-sortable="true" scope="col">Actions (CRUD)</th>
+                        <th data-field="actions" data-sortable="false" scope="col">Actions (CRUD)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,35 +38,28 @@
                             <td class="font-Montserrat f-weigth-400">{{ asset.datePurchased }}</td>
                             <td class="font-Montserrat f-weigth-400">{{ asset.location }}</td>
                             <td class="font-Montserrat f-weigth-400">{{ asset.manufacturerSupport }}</td>
-                            <td class="font-Montserrat f-weigth-400">{{ asset.actions }}</td>
-                            <!-- <td class="font-Montserrat f-weigth-400">
-                                {% if license.complianceStatus == 'Under Licensed' %}
-                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                                {% elseif license.complianceStatus == 'Over Licensed' %}
-                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary bg-primary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                                {% else %}
-                                    <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-secondary bg-secondary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                                {% endif %}
-                            </td> -->
-                            <!-- <td class="">
+                            <td class="font-Montserrat f-weigth-400">{{ asset.actions }}
                                 
 
-                                    <a role="button" href="/edit-lic?id={{ license.id }}" class="btn button-accent font-Montserrat f-weight-400">
-                                        edit
-                                    </a>
+                                <div >
 
 
-                                
-                                <button type="button" class="btn btn-danger">
-                                    <i class="bi bi-trash3-fill"></i>
-                                </button>
+                                    <a role="button" href="/add-asset" class="btn btn-info ">
+                                        Add
+                                    </a> <br>
+                              
+                                    <a role="button" href="/edit-asset?assetId={{ asset.assetId }}" class="btn button-accent font-Montserrat f-weight-400">
+                                        Edit
+                                    </a> <br>
 
-                                <br><br>
+                                    <a role="button" href="/delete-asset?assetId={{ asset.assetId }}" class="btn btn-danger font-Montserrat f-weight-400">
+                                        Delete
+                                    </a> <br>
 
 
-                                <button type="button" class="btn btn-info font-Montserrat f-weight-400">
-                                    Add
-                                </button> 
+                                    <a role="button" href="/view-asset?assetId={{ asset.assetId }}" class="btn button-accent font-Montserrat f-weight-400">
+                                        View
+                                    </a> <br>
 
 
 
@@ -74,7 +67,6 @@
 
 
                             </td>
-                            <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td> -->
                         </tr>
                     {% endfor %}
                 </tbody>

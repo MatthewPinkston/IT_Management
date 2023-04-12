@@ -14,15 +14,17 @@
 
     $error = null;
 
-    if(isset($_POST['addLicenseInfo']) && $_POST['addLicenseInfo'] === 'Save'){
+    if(isset($_POST['addassetInfo']) && $_POST['addassetInfo'] === 'Save'){
         $form = array(
-            /* 'ItemNumber' => $_POST['ItemNumber'], */
-            'name' => $_POST['name'],
-            'itemNumber' => $_POST['itemNumber'],
-            'version' => $_POST['version'],
-            'quantityPurchased' => $_POST['quantityPurchased'],
-            'quantityUsed' => $_POST['quantityUsed']
-            /* 'QuantityRemaining' => $_POST['QuantityRemaining'] */
+
+            'state' => $_POST['state'],
+            'assetId' => $_POST['assetId'],
+            'assetName' => $_POST['assetName'],
+            'assetType' => $_POST['assetType'],
+            'tagNumber' => $_POST['tagNumber'],
+            'datePurchased' => $_POST['datePurchased'],
+            'location' => $_POST['location'],
+            'manufacturerSupport' => $_POST['manufacturerSupport']
                     );
 
         if(emptyInput($form)){
@@ -34,7 +36,7 @@
 
         }
 
-        $sql = "INSERT INTO License_Tracking (name, itemNumber, version, quantityPurchased, quantityUsed) VALUES(?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO assets (state, assetId, assetName, assetType, tagNumber, datePurchased, location, manufacturerSupport) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -45,9 +47,9 @@
         else{
 
             $myuid = uniqid('', true);
-            $myuid = substr($myuid, 0, 8) . '-' . substr($myuid, 8, 4) . '-' . substr($myuid, 12, 4) . '-' . substr($myuid, 16, 4) . '-' . substr($myuid, 20);
+            $myuid = substr($myuid, 0, 8) . '-' . substr($myuid, 8, 4) . '-' . substr($myuid, 12, 4) . '-' . substr($myuid, 16, 4) . '-' . substr($myuid, 20, 4) . '-' . substr($myuid, 24, 4) . '-' . substr($myuid, 28, 4) . '-' . substr($myuid, 32, 4);
             // mysqli_stmt_bind_param($stmt, "sssssss", $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['question1'], $_POST['question2'], $_POST['question3'], $_SESSION['current_user']['id']);
-            mysqli_stmt_bind_param($stmt, "sssss", /* $myuid, */ $_POST['name'], $_POST['itemNumber'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed']);
+            mysqli_stmt_bind_param($stmt, "ssssssss", /* $myuid, */ $_POST['state'], $_POST['assetId'], $_POST['assetName'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_POST['manufacturerSupport']);
 
             mysqli_stmt_execute($stmt);
 
@@ -61,15 +63,15 @@
     }
 
     
-    
-    echo $_SESSION['TWIG']->render('/views/add_license.html', [
+    //var_dump($row);exit;
+    echo $_SESSION['TWIG']->render('/views/add_asset.html', [
         'title' => $title, //Expected by the header
-        'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
+        'userstate' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
         'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
 
-        //'currentLicense' => $row,
+        //'currentAsset' => $row,
         'error' => $error,
     ]);
