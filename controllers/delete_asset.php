@@ -40,6 +40,14 @@
         }
     }
 
+    if(isset($_GET['assetId']) && $_GET['assetId'] !== ''){
+        
+        $sql = "SELECT * FROM assets WHERE `assetId`='".$_GET['assetId']."'";
+        // echo $sql;exit;
+        $res = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($res);
+
+        }
     // var_dump([
     //     'title' => $title, //Expected by the header
     //     'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
@@ -63,5 +71,6 @@
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
 
         'currentAsset' => ['assetId'=>isset($_GET['assetId'])?$_GET['assetId']:''],
+        //['assetId'=>isset($_GET['assetId'])?$_GET['assetId']:''],
         'error' => $error,
     ]);
