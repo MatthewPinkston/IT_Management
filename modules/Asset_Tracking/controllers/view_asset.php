@@ -14,10 +14,9 @@
 
     $error = null;
 
-    if(isset($_POST['deleteAssetInfo']) && $_POST['deleteAssetInfo'] === 'Delete'){
+    if(isset($_POST['viewAssetInfo']) && $_POST['viewAssetInfo'] === 'Save'){
         
-
-        $sql = "DELETE FROM assets WHERE assetId=?";
+        $sql = "SELECT FROM assets SET state=?, version=?, assetType=?, tagNumber=?, datePurchased=?, location=?, manufacturerSupport=?, WHERE assetId=?;";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -26,8 +25,8 @@
         }
 
         else{
-
-            mysqli_stmt_bind_param($stmt, "s", $_POST['assetId']);
+            
+            mysqli_stmt_bind_param($stmt, "ssssss", $_POST['state'], $_POST['assetId'], $_POST['version'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_Post['manufacturerSupport']);
 
             mysqli_stmt_execute($stmt);
 
@@ -35,42 +34,34 @@
 
             mysqli_stmt_close($stmt);
 
-           
+            $_GET['assetId']=$_POST['assetId'];
+
             $error = 'none';
         }
     }
 
     if(isset($_GET['assetId']) && $_GET['assetId'] !== ''){
         
-        $sql = "SELECT * FROM assets WHERE `assetId`='".$_GET['assetId']."'";
-        // echo $sql;exit;
-        $res = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($res);
+            $sql = "SELECT * FROM assets WHERE `assetId`='".$_GET['assetId']."'";
+            // echo $sql;exit;
+            $res = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($res);
 
-        }
-    // var_dump([
-    //     'title' => $title, //Expected by the header
-    //     'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
-    //     'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
-    //     'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
-    //     'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
-    //     'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
+           
+           
 
-    //     'currentLicense' => ['id' => $_POST['id']],
-    //     'error' => $error,
-    // ]); exit;
-
-    
-    
-    echo $_SESSION['TWIG']->render('/views/delete_asset.html', [
+            
+     
+    }
+    //var_dump($row);exit;
+    echo $_SESSION['TWIG']->render('/modules/Asset_Tracking/views/view_asset.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
         'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
-
-        'currentAsset' => ['assetId'=>isset($_GET['assetId'])?$_GET['assetId']:''],
-        //['assetId'=>isset($_GET['assetId'])?$_GET['assetId']:''],
+        
+        'currentAsset' => $row,
         'error' => $error,
     ]);

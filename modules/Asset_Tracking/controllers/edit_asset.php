@@ -14,13 +14,9 @@
 
     $error = null;
 
-    if(isset($_POST['changeLicenseInfo']) && $_POST['changeLicenseInfo'] === 'Save'){
+    if(isset($_POST['changeassetInfo']) && $_POST['changeassetInfo'] === 'Save'){
         
- 
-        $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE itemNumber=?;";
-
-        // $sql = "UPDATE License_Tracking SET name=?, version=?, quantityPurchased=?, quantityUsed=? WHERE id=?;";
- 
+        $sql = "UPDATE assets SET state=?, assetName=?, assetType=?, tagNumber=?, datePurchased=?, location=?, manufacturerSupport=? WHERE assetId=?;";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -30,56 +26,40 @@
 
         else{
             
- 
-            mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['itemNumber']);
-
-            // mysqli_stmt_bind_param($stmt, "sssss", $_POST['name'], $_POST['version'], $_POST['quantityPurchased'], $_POST['quantityUsed'], $_POST['id']);
-
-
+            mysqli_stmt_bind_param($stmt, "ssssssss", $_POST['state'],$_POST['assetName'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_POST['manufacturerSupport'], $_POST['assetId']);
+           
             mysqli_stmt_execute($stmt);
 
             $res = mysqli_stmt_get_result($stmt);
 
             mysqli_stmt_close($stmt);
 
-            $_GET['itemNumber']=$_POST['itemNumber'];
+            $_GET['assetId']=$_POST['assetId'];
 
             $error = 'none';
         }
     }
 
-    if(isset($_GET['itemNumber']) && $_GET['itemNumber'] !== ''){
+    if(isset($_GET['assetId']) && $_GET['assetId'] !== ''){
         
- 
-            $sql = "SELECT * FROM License_Tracking WHERE `itemNumber`='".$_GET['itemNumber']."'";
-            // echo $sql;exit;
-            $res = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($res);
-
-           
-           
-
-
-        //$sql = "SELECT * FROM License_Tracking WHERE itemNumber='".$_GET['itemNumber']."'";
+        $sql = "SELECT * FROM assets WHERE `assetId`='".$_GET['assetId']."'";
         // echo $sql;exit;
-        //$res = mysqli_query($conn, $sql);
-        //$row = mysqli_fetch_assoc($res);
+        $res = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($res);
 
            
- 
             
      
     }
     //var_dump($row);exit;
-    echo $_SESSION['TWIG']->render('/views/edit_license.html', [
+    echo $_SESSION['TWIG']->render('/modules/Asset_Tracking/views/edit_asset.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
         'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
-        
-        'currentLicense' => $row,
+
+        'currentAsset' => $row,
         'error' => $error,
     ]);
-?>

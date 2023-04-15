@@ -62,7 +62,7 @@
 
     
     
-    echo $_SESSION['TWIG']->render('/views/add_license.html', [
+    echo $_SESSION['TWIG']->render('/modules/License_Tracking/views/add_license.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
