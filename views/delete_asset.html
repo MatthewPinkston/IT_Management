@@ -9,6 +9,10 @@
         
             <form action="delete-asset" method="POST">
       
+                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Asset ID: </label>
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">{{currentAsset.assetId}} </label>
+                </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
                     <p>Would you like to delete this asset?</p> <br> <br>
@@ -16,13 +20,13 @@
 
                     <input type="hidden" name="assetId" value="{{currentAsset.assetId}}">
 
-                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="deleteAssetInfo" value="Delete" >
+                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" href="/Asset_Tracking" name="deleteAssetInfo" value="Delete">
 
                 </div>
 
                 <div class="col-sm-1 d-grid">
                     
-                    <a class= "btn btn-outline-primary" href="/Asset_Tracking" role="button" > Cancel</a>
+                    <a class= "btn btn-outline-primary" href="/Asset_Tracking" role="button"> Cancel</a>
 
                 </div>
 
