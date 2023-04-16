@@ -36,8 +36,14 @@
                     <input id="assetName" name="assetName" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.assetName}}"/>
                 </div>
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Asset Type: </label>
-                    <input id="assetType" name="assetType" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.assetType}}" />
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="asset-types">Asset Type: </label>
+                        <select name="assetType" id="assetType" value="{{currentAsset.assetType}}">
+                                               
+                            <option input >Computer</option>
+                            <option input >Router</option>
+                            <option input >Printer</option>
+                            <option input >Server</option>
+                            <option input >Misc.</option> </select>
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
