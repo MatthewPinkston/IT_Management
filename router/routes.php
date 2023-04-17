@@ -8,15 +8,15 @@
     get('/register', './controllers/register.php');
     get('/main', './controllers/mainTemplateExample.php');
     get('/twoCol', './controllers/twoColumnExample.php');
-    get('/edit-lic', './controllers/edit_license.php');
-    get('/add-lic', './controllers/add_license.php');
-    get('/delete-lic', './controllers/delete_license.php');
-    get('/view-lic', './controllers/view_license.php');
-    get('/add-asset', './controllers/add_asset.php');
+    get('/edit-lic', './modules/License_Tracking/controllers/edit_license.php');
+    get('/add-lic', './modules/License_Tracking/controllers/add_license.php');
+    get('/delete-lic', './modules/License_Tracking/controllers/delete_license.php');
+    get('/view-lic', './modules/License_Tracking/controllers/view_license.php');
+    get('/add-asset', './modules/Asset_Tracking/controllers/add_asset.php');
  
-    get('/delete-asset', './controllers/delete_asset.php');
+    get('/delete-asset', './modules/Asset_Tracking/controllers/delete_asset.php');
 
-    get('/edit-asset', './controllers/edit_asset.php');
+    get('/edit-asset', './modules/Asset_Tracking/controllers/edit_asset.php');
 
     if(isset($_SESSION['user_roles']) && checkPrivilege('view_users', $_SESSION['user_roles'])){
         get('/users', './controllers/users.php');
@@ -46,20 +46,20 @@
 
     post('/profile', './controllers/profile.php');
 
-    post('/edit-lic', './controllers/edit_license.php');
-    post('/add-lic', './controllers/add_license.php');
-    post('/delete-lic', './controllers/delete_license.php');
-    post('/view-lic', './controllers/view_license.php');
+    post('/edit-lic', './modules/License_Tracking/controllers/edit_license.php');
+    post('/add-lic', './modules/License_Tracking/controllers/add_license.php');
+    post('/delete-lic', './modules/License_Tracking/controllers/delete_license.php');
+    post('/view-lic', './modules/License_Tracking/controllers/view_license.php');
 
     //get('/add-asset', './controllers/view_asset.php');
-    get('/view-asset', './controllers/view_asset.php');
+    get('/view-asset', './modules/Asset_Tracking/controllers/view_asset.php');
 
 
-    post('/add-asset', './controllers/add_asset.php');
+    post('/add-asset', './modules/Asset_Tracking/controllers/add_asset.php');
 
-    post('/delete-asset', './controllers/delete_asset.php');
+    post('/delete-asset', './modules/Asset_Tracking/controllers/delete_asset.php');
 
-    post('/edit-asset', './controllers/edit_asset.php');
+    post('/edit-asset', './modules/Asset_Tracking/controllers/edit_asset.php');
 
 
     // For GET or POST
