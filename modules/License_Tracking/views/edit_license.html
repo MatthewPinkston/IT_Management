@@ -38,12 +38,12 @@
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Purchased: </label>
-                    <input id="quantityPurchased" name="quantityPurchased" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.quantityPurchased}}" />
+                    <input id="quantityPurchased" name="quantityPurchased" type="number" required class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.quantityPurchased}}" />
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
                     <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Used: </label>
-                    <input id="quantityUsed" name="quantityUsed" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.quantityUsed}}" />
+                    <input id="quantityUsed" name="quantityUsed" type="number" required class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.quantityUsed}}" />
                 </div>                          
 
                 <!-- <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
@@ -70,7 +70,7 @@
 
         </div>
 
-        <!-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
             {% if error == '1' %}
                 <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="d-flex">
@@ -136,7 +136,7 @@
                 </div>
             {% endif %}
         </div>
-    </div> -->
+    </div>
 
     <script>
         $('#changeButton').click(() => {enableInputs()});

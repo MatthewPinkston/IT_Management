@@ -14,9 +14,10 @@
 
     $error = null;
 
-    if(isset($_POST['changeassetInfo']) && $_POST['changeassetInfo'] === 'Save'){
+    if(isset($_POST['deleteAssetInfo']) && $_POST['deleteAssetInfo'] === 'Delete'){
         
-        $sql = "UPDATE assets SET state=?, assetName=?, assetType=?, tagNumber=?, datePurchased=?, location=?, manufacturerSupport=? WHERE assetId=?;";
+
+        $sql = "DELETE FROM assets WHERE assetId=?";
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -25,17 +26,16 @@
         }
 
         else{
-            
-            mysqli_stmt_bind_param($stmt, "ssssssss", $_POST['state'],$_POST['assetName'], $_POST['assetType'], $_POST['tagNumber'], $_POST['datePurchased'], $_POST['location'], $_POST['manufacturerSupport'], $_POST['assetId']);
-           
+
+            mysqli_stmt_bind_param($stmt, "s", $_POST['assetId']);
+
             mysqli_stmt_execute($stmt);
 
             $res = mysqli_stmt_get_result($stmt);
 
             mysqli_stmt_close($stmt);
 
-            $_GET['assetId']=$_POST['assetId'];
-
+           
             $error = 'none';
         }
     }
@@ -47,12 +47,22 @@
         $res = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($res);
 
-           
-            
-     
-    }
-    //var_dump($row);exit;
-    echo $_SESSION['TWIG']->render('/views/edit_asset.html', [
+        }
+    // var_dump([
+    //     'title' => $title, //Expected by the header
+    //     'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
+    //     'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
+    //     'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
+    //     'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
+    //     'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
+
+    //     'currentLicense' => ['id' => $_POST['id']],
+    //     'error' => $error,
+    // ]); exit;
+
+    
+    
+    echo $_SESSION['TWIG']->render('/modules/Asset_Tracking/views/delete_asset.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
@@ -60,6 +70,7 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
 
-        'currentAsset' => $row,
+        'currentAsset' => ['assetId'=>isset($_GET['assetId'])?$_GET['assetId']:''],
+        //['assetId'=>isset($_GET['assetId'])?$_GET['assetId']:''],
         'error' => $error,
     ]);

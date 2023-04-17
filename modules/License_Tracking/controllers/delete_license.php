@@ -14,10 +14,14 @@
 
     $error = null;
 
-    if(isset($_POST['deleteAssetInfo']) && $_POST['deleteAssetInfo'] === 'Delete'){
+    if(isset($_POST['deleteLicenseInfo']) && $_POST['deleteLicenseInfo'] === 'Delete'){
         
 
-        $sql = "DELETE FROM assets WHERE assetId=?";
+ 
+        $sql = "DELETE FROM License_Tracking WHERE itemNumber=?";
+
+        //$sql = "DELETE FROM `License_Tracking` WHERE id=?";
+
 
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -27,7 +31,7 @@
 
         else{
 
-            mysqli_stmt_bind_param($stmt, "s", $_POST['assetId']);
+            mysqli_stmt_bind_param($stmt, "s", $_POST['itemNumber']);
 
             mysqli_stmt_execute($stmt);
 
@@ -54,7 +58,7 @@
 
     
     
-    echo $_SESSION['TWIG']->render('/views/delete_asset.html', [
+    echo $_SESSION['TWIG']->render('/modules/License_Tracking/views/delete_license.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view
@@ -62,6 +66,6 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
 
-        'currentAsset' => ['assetId'=>isset($_GET['assetId'])?$_GET['assetId']:''],
+        'currentLicense' => ['itemNumber'=>isset($_GET['itemNumber'])?$_GET['itemNumber']:''],
         'error' => $error,
     ]);
