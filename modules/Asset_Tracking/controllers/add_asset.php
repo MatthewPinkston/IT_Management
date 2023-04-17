@@ -64,7 +64,7 @@
 
     
     //var_dump($row);exit;
-    echo $_SESSION['TWIG']->render('/views/add_asset.html', [
+    echo $_SESSION['TWIG']->render('/modules/Asset_Tracking/views/add_asset.html', [
         'title' => $title, //Expected by the header
         'userstate' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display
         'userView' => checkPrivilege('view_users', $_SESSION['user_roles']), //Expected for nav bar to show (or not) the users table view

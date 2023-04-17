@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="container rppit-mc-p1">
-        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Add Asset</h1>
+        <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Edit License</h1>
         
-        <div class="w-100 p-3">       
+        <div class="w-100 p-3">
 
             <style>
                 div {
@@ -17,66 +17,53 @@
                 }
               </style>
 
-
-            <form action="add-asset" method="POST">
+ 
+            <form action="edit-lic" method="POST">
       
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">State: </label>
-                    <input id="state" name="state" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.state}}" >
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Software Name: </label>
+                    <input id="name" name="name" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.name}}" >
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Asset ID: </label>
-                    <input id="assetId" name="assetId" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.assetId}}" >
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Item #: </label>
+                    <input id="itemNumber" name="itemNumber" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.itemNumber}}" >
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Asset Name: </label>
-                    <input id="assetName" name="assetName" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.assetName}}"/>
-                </div>
-                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Asset Type: </label>
-                    <input id="assetType" name="assetType" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.assetType}}" />
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Software Version: </label>
+                    <input id="version" name="version" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.version}}"/>
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Tag Number: </label>
-                    <input id="tagNumber" name="tagNumber" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.tagNumber}}" />
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Purchased: </label>
+                    <input id="quantityPurchased" name="quantityPurchased" type="number" required class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.quantityPurchased}}" />
                 </div>
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Date Purchased: </label>
-                    <input id="datePurchased" name="datePurchased" type="date" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.datePurchased}}" />
-                </div>
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Used: </label>
+                    <input id="quantityUsed" name="quantityUsed" type="number" required class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.quantityUsed}}" />
+                </div>                          
+
+                <!-- <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Quantity Remaining: </label>
+                    <input id="QuanitityRemaining" name="QuanitityRemaining" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentLicense.QuanitityRemaining}}" />
+                </div> --> 
 
                 <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Location: </label>
-                    <input id="location" name="location" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.location}}" />
-                </div>
 
-                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
-                    <label class="form-label font-Montserrat f-weight-600 color-primary me-4" for="form3Example3">Manufacturer Support: </label>
-                    <input id="manufacturerSupport" name="manufacturerSupport" type="text" class=" col-8 form-control rppit-inbx-s2" value="{{currentAsset.manufacturerSupport}}" />
-                </div>
-                
-                <div class="d-flex justify-content-start align-items-center flex-wrap mb-4">
+                    <input type="hidden" name="itemNumber" value="{{currentLicense.itemNumber}}">
 
-                    <input type="hidden" name="id" value="{{currentAsset.id}}">
-
-                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" href="/Asset_Tracking" name="addassetInfo" value="Save" >
+                    <input id="submitButton" type="submit" class="btn button-accent font-Montserrat f-weight-400 mb-4" name="changeLicenseInfo" value="Save" >
 
                 </div>
 
-                
                 <div class="col-sm-1 d-grid">
                     
-                    <a class= "btn btn-outline-primary" href="/Asset_Tracking" role="button"> Cancel</a>
+                    <a class= "btn btn-outline-primary" href="/License_Tracking" role="button"> Cancel</a>
 
                 </div>
-
-
-
 
 
             </form>
