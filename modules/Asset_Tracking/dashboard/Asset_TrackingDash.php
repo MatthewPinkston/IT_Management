@@ -1,22 +1,21 @@
 <?php
-    $overLicensedQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE complianceStatus = 'Over Licensed'";
-    $underLicensedQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE complianceStatus = 'Under Licensed'";
-    $inComplianceQuery = "SELECT COUNT(*) as count FROM license_tracking WHERE complianceStatus = 'In Compliance'";
+    $working = "SELECT COUNT(*) as count FROM asset_tracking WHERE status = 'Working'";
+    $scrap = "SELECT COUNT(*) as count FROM asset_tracking WHERE status = 'Scrap'";
+    $repair = "SELECT COUNT(*) as count FROM asset_tracking WHERE status = 'Repair'";
 
-    $resOverLicensed = mysqli_query($conn, $overLicensedQuery);
-    $resUnderLicensed = mysqli_query($conn, $underLicensedQuery);
-    $resInCompliance = mysqli_query($conn, $inComplianceQuery);
+    $resworking = mysqli_query($conn, $working);
+    $resscrap = mysqli_query($conn, $scrap);
+    $resrepair = mysqli_query($conn, $repair);
 
-    $overLicensedCount = mysqli_fetch_assoc($resOverLicensed);
-    $underLicensedCount = mysqli_fetch_assoc($resUnderLicensed);
-    $inComplianceCount = mysqli_fetch_assoc($resInCompliance);
+    $workingCount = mysqli_fetch_assoc($resworking);
+    $scrapCount = mysqli_fetch_assoc($resscrap);
+    $repairCount = mysqli_fetch_assoc($resrepair);
 
     // mysqli_close($conn);
 
-    $widgetData['License_Tracking'] = array(
-        'overLicensed' => $overLicensedCount['count'],
-        'underLicensed' => $underLicensedCount['count'],
-        'inCompliance' => $inComplianceCount['count']
+    $widgetData['Asset_Tracking'] = array(
+        'working' => $workingCount['count'],
+        'scrap' => $scrapCount['count'],
+        'repair' => $repairCount['count']
     );
-	
 ?>

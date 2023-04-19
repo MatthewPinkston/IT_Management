@@ -15,7 +15,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
     $question2 = $_POST['question2'];
     $question3 = $_POST['question3'];
 
-    if(emptyInput($firstName, $lastName, $email, $password)){
+    if(emptyInput([$firstName, $lastName, $email, $password])){
         header('Location: users?error=2');
         exit();
     }

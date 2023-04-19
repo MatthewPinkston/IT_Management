@@ -4,7 +4,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/authentication/roles.php');
     require_once($_SERVER['DOCUMENT_ROOT']."/mysql/config.php");
 
-    $app = $_SERVER['DOCUMENT_ROOT'].'/modules/License_Tracking/app.json';
+    $app = $_SERVER['DOCUMENT_ROOT'].'/modules/Asset_Tracking/app.json';
 
     $title = getValue($app, 'module_name');
 
@@ -13,16 +13,19 @@
         header('Location: /Login');
     }
 
-    function getLicenses($conn){
-        $query = "SELECT * FROM `License_Tracking`";
+    function getAssets($conn){
+        $query = "SELECT * FROM `Asset_Tracking`";
 
         $res = mysqli_query($conn, $query);
-
+        $assets = [];
         while($row = mysqli_fetch_object($res)){
-            $licenses[]=$row;
+            $assets[]=$row;
         }
+        return $assets;
+    }
 
-        return $licenses;
+    function add(){
+        echo 'add function';
     }
 
     echo $_SESSION['TWIG'] ->render(getValue($app, 'view_path'), [
@@ -33,5 +36,5 @@
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
 
-        'licenses' => getLicenses($conn)
+        'assets' => getAssets($conn)
     ]);
