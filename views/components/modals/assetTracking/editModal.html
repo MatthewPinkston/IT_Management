@@ -1,0 +1,52 @@
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel">Edit Asset</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="asset_edit" method="POST">
+                    <div class="form-outline mb-4">
+                        <input id="mod-in-assetName" name="assetName" type="text" class="form-control" value="{{asset.name}}"
+                            placeholder="{{asset.name}}" />
+                        <label class="form-label" for="form3Example3">Name</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input id="mod-in-assetType" name="assetType" type="text" class="form-control" value="{{asset.assetType}}"
+                            placeholder="{{asset.assetType}}" />
+                        <label class="form-label" for="form3Example3">Type</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <select name="assetIsActive" class="form-control">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            <option value="NA">NA</option>
+
+                        </select>
+                        <label class="form-label" for="form3Example4">Active Status</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input name="totalPurchased" type="text" class="form-control" />
+                        <label class="form-label" for="form3Example4">Purchased</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input name="assigned" type="text" class="form-control" />
+                        <label class="form-label" for="form3Example4">Assigned</label>
+                    </div>
+
+                    <input id="mod-in-id" name="id" value="" type="hidden" class="form-control"/>
+                    <input id="mod-in-row" name="row" value="" type="hidden" class="form-control"/>
+                    <!-- Submit button -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button name="edit" value="edit" type="submit" class="btn button-accent">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+

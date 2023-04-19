@@ -1,0 +1,27 @@
+<div class="container">
+    <canvas id="assetChart"></canvas>
+</div>
+
+<script>
+    let myChart = document.getElementById('assetChart').getContext('2d');
+
+    let massPopChart = new Chart(assetChart, {
+        type:'polarArea', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data:{
+            labels:['Yes', 'No', 'NA'],
+            datasets:[{
+                label:'Is Active',
+                data:[
+                    "{{widgetData['Asset_Tracking']['yes']}}", "{{widgetData['Asset_Tracking']['no']}}", "{{widgetData['Asset_Tracking']['na']}}"
+                ],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ]
+            }]
+        },
+        options:{}
+    });
+</script>
+
