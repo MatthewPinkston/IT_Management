@@ -12,13 +12,18 @@
 
     // Initialize widget array
     $widgetData = array();
+    // foreach($_SERVER['modules'] as $module){
+    //     array_push($widgetData, array(
+            
+    //     ));
+    // }
     //Load dashboard Widget Controllers
     foreach($_SERVER['MODULE_PATHS'] as $module){
         require($module[3]);
     }
 	
 	// var_dump($widgetData);exit;
-    
+    // print_r($widgetData);
     echo $_SESSION['TWIG']->render('/views/home.html', [
         'title' => $title, //Expected by the header
         'userName' => $_SESSION['current_user']['firstName'], //Expected for nav bar user's name display

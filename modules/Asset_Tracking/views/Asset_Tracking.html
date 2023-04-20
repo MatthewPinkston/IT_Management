@@ -1,0 +1,101 @@
+{% extends '/views/templates/mainTemplate.html' %}
+
+{% block content %}
+<div class="container-fluid rppit-mc-p1">
+    <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Asset Tracking</h1>
+    <div class="w-100 p-3">
+        <table id="table" data-toggle="table" data-search="true" data-filter-control="true" data-show-export="true"
+            data-click-to-select="true" data-toolbar="#toolbar" class="table text-center table-responsive">
+            <thead class="table-light">
+                <tr>
+                    <th data-field="assetName" data-sortable="true" scope="col">Asset Name</th>
+                    <th data-field="assetType" data-sortable="true" scope="col">Asset Type</th>
+                    <th data-field="totalPurchased" data-sortable="true" scope="col">Total Purchased</th>
+                    <th data-field="inStock" data-sortable="true" scope="col">In Stock</th>
+                    <th data-field="inCondition" data-sortable="true" scope="col">In Condition</th>
+                    <th data-field="assigned" data-sortable="true" scope="col">Assigned</th>
+                    <th data-field="notInCondition" data-sortable="true" scope="col">Not In Condition</th>
+                    <th data-field="actions" data-sortable="false" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for asset in assets %}
+                <tr>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.name }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.type }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.totalPurchased }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.inStock }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.inCondition }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.assigned }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.notInCondition }}</td>
+                    <td class="">
+                        <!-- <button type="button" class="btn button-accent font-Montserrat f-weight-400">
+                            edit
+                        </button> -->
+                        <button type="button" class="btn button-accent font-Montserrat f-weight-400"
+                            data-bs-toggle="modal" data-bs-target="#editModal" data-roles="{{roles | json_encode}}"
+                            data-userroles="{{userRoles[user.id] | json_encode}}"
+                            data-row="{{asset.name}},{{asset.type}},{{ asset.totalPurchased }},{{ asset.inStock }},{{asset.inCondition}},{{asset.assigned }},{{asset.notInCondition }},{{asset.id}}"
+                            id="editButton{{counter}}">
+                            edit
+                        </button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#removeModal" id="removeButton{{counter}}"
+                            data-row="{{asset.name}},{{asset.version}},{{asset.id}}">
+                            <i class="bi bi-trash3-fill"></i>
+                        </button>
+                        <script defer>
+                            $("#editButton{{counter}}").click(function () {
+
+
+                                let row = $("#editButton{{counter}}").data("row").split(",");
+                                console.log(row)
+                                $("#mod-in-assetName").val(row[0])
+                                $("#mod-in-assetType").val(row[1])
+                                $("#mod-in-totalPurchased").val(row[2])
+                                $("#mod-in-inStock").val(row[3])
+                                $("#mod-in-inCondition").val(row[4])
+                                $("#mod-in-assigned").val(row[5])
+                                $("#mod-in-notInCondition").val(row[6])
+                                $("#mod-in-id").val(row[7])
+                                $("#mod-in-row").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]},${row[5]},${row[6]},${row[7]}`)
+                            });
+                        </script>
+                        <script defer>
+                            $("#removeButton{{counter}}").click(function () {
+                                let row = $("#removeButton{{counter}}").data("row").split(",")
+                                $("#remove-mod-prompt").text(`Do you want to delete ${row[0]} ${row[1]}'s row?`)
+                                $("#remove-mod-id").val(`${row[2]}`)
+                            });
+                        </script>
+                    </td>
+                    <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td>
+                </tr>
+                {% set counter = counter + 1 %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-sm justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1"><i class="bi bi-caret-left-fill"></i></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#"><i class="bi bi-caret-right-fill"></i></a>
+                </li>
+            </ul>
+        </nav>
+
+        <button type="button" class="btn button-accent font-Montserrat f-weight-400 mt-4" data-bs-toggle="modal"
+            data-bs-target="#createModal">Add New Asset</button>
+
+        {% include 'views/components/modals/assetTracking/editModal.html' %}
+        {% include 'views/components/modals/assetTracking/createModal.html' %}
+        {% include 'views/components/modals/assetTracking/removeModal.html' %}
+
+
+    </div>
+    {% endblock %}

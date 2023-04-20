@@ -35,6 +35,18 @@
     post('/remove', './php/users/remove.php');
     post('/add', './php/users/add.php');
 
+    //License Routes
+
+    post('/license_add', './php/licenseTracking/add.php');
+    post('/license_remove', './php/licenseTracking/remove.php');
+    post('/license_edit', './php/licenseTracking/edit.php');
+
+    //Asset Routes
+
+    post('/asset_add', './php/assetTracking/add.php');
+    post('/asset_remove', './php/assetTracking/remove.php');
+    post('/asset_edit', './php/assetTracking/edit.php');
+
     post('/profile', './controllers/profile.php');
 
     // For GET or POST

@@ -3,6 +3,10 @@
     if(isset($_POST['remove']) && $_POST['remove'] == 'remove'){
         $id = $_POST['id'];
 
+        echo $id;
+
+        die();
+
         $sql = 'DELETE FROM users WHERE id=?';
         $stmt = mysqli_prepare($conn, $sql);
 

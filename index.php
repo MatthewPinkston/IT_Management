@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 
 //Load modules
 $_SERVER['modules'] = array_values(array_filter(glob('./modules/*'), 'is_dir'));
-
+// print_r($_SERVER['modules']);
 $array = array();
 foreach($_SERVER['modules'] as $module){
     array_push($array, array(
@@ -17,6 +17,7 @@ foreach($_SERVER['modules'] as $module){
     ));
 }
 $_SERVER['MODULE_PATHS'] = $array;
+// print_r($_SERVER['MODULE_PATHS']);
 
 //Load .env file
 $dotenv = Dotenv\Dotenv::createMutable('./');

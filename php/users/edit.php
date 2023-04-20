@@ -66,7 +66,7 @@
         }
 
         $row = explode(', ', $_POST['row']);
-
+        
         if(empty($firstName)){
             $firstName = $row[0];
         }

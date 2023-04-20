@@ -1,0 +1,66 @@
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a New License</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="asset_add" method="POST">
+       
+
+                    <div class="form-outline mb-4">
+                        <input id="mod-in-assetName" name="assetName" type="text" class="form-control" value="{{asset.name}}"
+                            placeholder="{{asset.name}}" />
+                        <label class="form-label" for="form3Example3">Asset Name</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <select name="assetType" class="form-control">
+                            <option value="Computers">Computers</option>
+                            <option value="Storage">Storage</option>
+                            <option value="IO">IO</option>
+
+                        </select>
+                        <label class="form-label" for="form3Example4">Asset Type</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input name="totalPurchased" type="text" class="form-control" />
+                        <label class="form-label" for="form3Example4">Total Purchased</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input name="inStock" type="text" class="form-control" />
+                        <label class="form-label" for="form3Example4">In Stock</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input name="inCondition" type="text" class="form-control" />
+                        <label class="form-label" for="form3Example4">In Condition</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input name="assigned" type="text" class="form-control" />
+                        <label class="form-label" for="form3Example4">Assigned</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input name="notInCondition" type="text" class="form-control" />
+                        <label class="form-label" for="form3Example4">Not In Condition</label>
+                    </div>
+
+                    
+
+                    <input id="mod-in-id" name="id" value="" type="hidden" class="form-control" />
+                    <input id="mod-in-row" name="row" value="" type="hidden" class="form-control" />
+                    <!-- Submit button -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button name="submit" value="add" type="submit" class="btn button-accent">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
