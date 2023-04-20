@@ -1,0 +1,27 @@
+<div class="container">
+    <canvas id="assetChart"></canvas>
+</div>
+
+<script>
+    let myChart = document.getElementById('assetChart').getContext('2d');
+
+    let massPopChart = new Chart(assetChart, {
+        type:'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data:{
+            labels:['Computers', 'IO', 'Storage'],
+            datasets:[{
+                label:'Asset Categories',
+                data:[
+                    "{{widgetData['Asset_Tracking']['computers']}}", "{{widgetData['Asset_Tracking']['io']}}", "{{widgetData['Asset_Tracking']['storage']}}"
+                ],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ]
+            }]
+        },
+        options:{}
+    });
+</script>
+

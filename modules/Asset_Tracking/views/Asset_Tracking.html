@@ -2,43 +2,28 @@
 
 {% block content %}
 <div class="container-fluid rppit-mc-p1">
-    <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Licensing Tracking</h1>
+    <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Asset Tracking</h1>
     <div class="w-100 p-3">
         <table id="table" data-toggle="table" data-search="true" data-filter-control="true" data-show-export="true"
             data-click-to-select="true" data-toolbar="#toolbar" class="table text-center table-responsive">
             <thead class="table-light">
                 <tr>
-                    <th data-field="softwareName" data-sortable="true" scope="col">License Name</th>
-                    <th data-field="softwareVersion" data-sortable="true" scope="col">License Version</th>
+                    <th data-field="assetName" data-sortable="true" scope="col">Asset Name</th>
+                    <th data-field="assetType" data-sortable="true" scope="col">Asset Type</th>
                     <th data-field="totalPurchased" data-sortable="true" scope="col">Total Purchased</th>
-                    <th data-field="managedInstallations" data-sortable="true" scope="col">Managed Installations</th>
-                    <th data-field="remaining" data-sortable="true" scope="col">Remaining</th>
-                    <th data-field="complianceStatus" data-sortable="true" scope="col">Compliance Status</th>
+                    <th data-field="assetWarranty" data-sortable="true" scope="col">Warranty</th>
+                    <th data-field="assigned" data-sortable="true" scope="col">Assigned</th>
                     <th data-field="actions" data-sortable="false" scope="col">Actions</th>
-                    <th data-field="networkInstallations" data-sortable="true" scope="col">Network Installations</th>
                 </tr>
             </thead>
             <tbody>
-                {% for license in licenses %}
+                {% for asset in assets %}
                 <tr>
-                    <td class="font-Montserrat f-weigth-400">{{ license.name }}</td>
-                    <td class="font-Montserrat f-weigth-400">{{ license.version }}</td>
-                    <td class="font-Montserrat f-weigth-400">{{ license.totalPurchased }}</td>
-                    <td class="font-Montserrat f-weigth-400">{{ license.managedInstallations }}</td>
-                    <td class="font-Montserrat f-weigth-400">{{ license.totalPurchased - license.managedInstallations }}
-                    </td>
-                    <td class="font-Montserrat f-weigth-400">
-                        {% if license.complianceStatus == 'Under Licensed' %}
-                        <small
-                            class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                        {% elseif license.complianceStatus == 'Over Licensed' %}
-                        <small
-                            class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary bg-primary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                        {% else %}
-                        <small
-                            class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-secondary bg-secondary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
-                        {% endif %}
-                    </td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.name }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.type }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.totalPurchased }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.warranty }}</td>
+                    <td class="font-Montserrat f-weigth-400">{{ asset.assigned }}</td>
                     <td class="">
                         <!-- <button type="button" class="btn button-accent font-Montserrat f-weight-400">
                             edit
@@ -46,13 +31,13 @@
                         <button type="button" class="btn button-accent font-Montserrat f-weight-400"
                             data-bs-toggle="modal" data-bs-target="#editModal" data-roles="{{roles | json_encode}}"
                             data-userroles="{{userRoles[user.id] | json_encode}}"
-                            data-row="{{license.name}},{{license.version}},{{ license.totalPurchased }},{{ license.managedInstallations }},{{license.complianceStatus}},{{license.networkInstallations }},{{license.id}}"
+                            data-row="{{asset.name}},{{asset.type}},{{ asset.totalPurchased }},{{ asset.warranty }},{{asset.assigned }},{{asset.id}}"
                             id="editButton{{counter}}">
                             edit
                         </button>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#removeModal" id="removeButton{{counter}}"
-                            data-row="{{license.name}},{{license.version}},{{license.id}}">
+                            data-row="{{asset.name}},{{asset.type}},{{asset.id}}">
                             <i class="bi bi-trash3-fill"></i>
                         </button>
                         <script defer>
@@ -61,19 +46,19 @@
 
                                 let row = $("#editButton{{counter}}").data("row").split(",");
                                 console.log(row)
-                                $("#mod-in-softwareName").val(row[0])
-                                $("#mod-in-softwareVersion").val(row[1])
+                                $("#mod-in-assetName").val(row[0])
+                                $("#mod-in-assetType").val(row[1])
                                 $("#mod-in-totalPurchased").val(row[2])
-                                $("#mod-in-mangedToInstall").val(row[3])
-                                $("#mod-in-complianceStatus").val(row[4])
-                                $("#mod-in-networkInstallations").val(row[5])
-                                $("#mod-in-id").val(row[6])
-                                $("#mod-in-row").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]}`)
+                                $("#mod-in-assetWarranty").val(row[3])
+                                $("#mod-in-assigned").val(row[4])
+                                $("#mod-in-id").val(row[5])
+                                $("#mod-in-row").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]},${row[5]}`)
                             });
                         </script>
                         <script defer>
                             $("#removeButton{{counter}}").click(function () {
                                 let row = $("#removeButton{{counter}}").data("row").split(",")
+                                console.log(row);
                                 $("#remove-mod-prompt").text(`Do you want to delete ${row[0]} ${row[1]}'s row?`)
                                 $("#remove-mod-id").val(`${row[2]}`)
                             });
@@ -100,11 +85,11 @@
         </nav>
 
         <button type="button" class="btn button-accent font-Montserrat f-weight-400 mt-4" data-bs-toggle="modal"
-            data-bs-target="#createModal">Add New License</button>
+            data-bs-target="#createModal">Add New Asset</button>
 
-        {% include 'views/components/modals/licenseTracking/editModal.html' %}
-        {% include 'views/components/modals/licenseTracking/createModal.html' %}
-        {% include 'views/components/modals/licenseTracking/removeModal.html' %}
+        {% include 'views/components/modals/assetTracking/editModal.html' %}
+        {% include 'views/components/modals/assetTracking/createModal.html' %}
+        {% include 'views/components/modals/assetTracking/removeModal.html' %}
 
 
     </div>

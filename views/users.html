@@ -1,7 +1,36 @@
 {% extends 'views/templates/mainTemplate.html' %}
 
 {% block content %}
-
+    {% if error == 'none' %}
+    <div class="alert alert-success font-Montserrat f-weight-400" role="alert">
+        Success!
+    </div>
+    {% elseif error == '1'%}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Required fields are empty
+    </div>
+    {% elseif error == '2' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Required fields are empty
+    </div>
+    {% elseif error == '3' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Email already registered
+    </div>
+    {% elseif error == '4' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Some problem with sql
+    </div>
+    {% endif %}
+    {% if res == 'none' %}
+    <div class="alert alert-success font-Montserrat f-weight-400" role="alert">
+        Success!
+    </div>
+    {% elseif res == '1'%}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Backenderror
+    </div>
+    {% endif %}
 
     <div class="container-fluid rppit-mc-p1">
         <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Users</h1>
