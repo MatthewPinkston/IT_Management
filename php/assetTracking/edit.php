@@ -16,13 +16,19 @@
         $row = explode(', ', $_POST['row']);
 
         if(empty($assetName)){
-            $assetName = $row[0];
+            $assetName = $row[0][0];
         }
         if(empty($assetType)){
-            $assetType = $row[1];
+            $assetType = $row[0][1];
         }
         if(empty($totalPurchased)){
-            $totalPurchased = $row[2];
+            $totalPurchased = $row[0][2];
+        }
+        if(empty($warranty)){
+            $totalPurchased = $row[0][3];
+        }
+        if(empty($assigned)){
+            $totalPurchased = $row[0][4];
         }
 
        
@@ -42,7 +48,7 @@
 
         mysqli_stmt_close($stmt);
 
-        header('Location:Asset_Tracking?res=1');
+        header('Location:Asset_Tracking?res=none');
         // comment
         exit();
     }

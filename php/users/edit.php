@@ -93,7 +93,7 @@
 
         mysqli_stmt_close($stmt);
 
-        header('Location: /users?res=1');
+        header('Location: /users?res=none');
         // comment
         exit();
     }

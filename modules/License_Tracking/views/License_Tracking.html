@@ -1,6 +1,44 @@
 {% extends '/views/templates/mainTemplate.html' %}
 
 {% block content %}
+    {% if error == 'none' %}
+    <div class="alert alert-success font-Montserrat f-weight-400" role="alert">
+        Success!
+    </div>
+    {% elseif error == '1'%}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Name Can't be null
+    </div>
+    {% elseif error == '2' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Version Can't be null
+    </div>
+    {% elseif error == '3' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Total Purchased Can't be null
+    </div>
+    {% elseif error == '4' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Howmany Installed?
+    </div>
+    {% elseif error == '5' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        What is the complianceStatus?
+    </div>
+    {% elseif error == '6' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        How many installed over network?
+    </div>
+    {% endif %}
+    {% if res == 'none' %}
+    <div class="alert alert-success font-Montserrat f-weight-400" role="alert">
+        Success!
+    </div>
+    {% elseif res == '1'%}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Backenderror
+    </div>
+    {% endif %}
 <div class="container-fluid rppit-mc-p1">
     <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Licensing Tracking</h1>
     <div class="w-100 p-3">
@@ -44,6 +82,13 @@
                             edit
                         </button> -->
                         <button type="button" class="btn button-accent font-Montserrat f-weight-400"
+                            data-bs-toggle="modal" data-bs-target="#viewModal" data-roles="{{roles | json_encode}}"
+                            data-userroles="{{userRoles[user.id] | json_encode}}"
+                            data-row="{{license.name}},{{license.version}},{{ license.totalPurchased }},{{ license.managedInstallations }},{{license.complianceStatus}},{{license.networkInstallations }},{{license.id}}"
+                            id="viewButton{{counter}}">
+                            view
+                        </button>
+                        <button type="button" class="btn button-accent font-Montserrat f-weight-400"
                             data-bs-toggle="modal" data-bs-target="#editModal" data-roles="{{roles | json_encode}}"
                             data-userroles="{{userRoles[user.id] | json_encode}}"
                             data-row="{{license.name}},{{license.version}},{{ license.totalPurchased }},{{ license.managedInstallations }},{{license.complianceStatus}},{{license.networkInstallations }},{{license.id}}"
@@ -55,6 +100,22 @@
                             data-row="{{license.name}},{{license.version}},{{license.id}}">
                             <i class="bi bi-trash3-fill"></i>
                         </button>
+                        <script defer>
+                            $("#viewButton{{counter}}").click(function () {
+
+
+                                let row = $("#viewButton{{counter}}").data("row").split(",");
+                                console.log(row)
+                                $("#mod-in-softwareName1").val(row[0])
+                                $("#mod-in-softwareVersion1").val(row[1])
+                                $("#mod-in-totalPurchased1").val(row[2])
+                                $("#mod-in-mangedToInstall1").val(row[3])
+                                $("#mod-in-complianceStatus1").val(row[4])
+                                $("#mod-in-networkInstallations1").val(row[5])
+                                $("#mod-in-id1").val(row[6])
+                                $("#mod-in-row1").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]},${row[5]}`)
+                            });
+                        </script>
                         <script defer>
                             $("#editButton{{counter}}").click(function () {
 
@@ -68,7 +129,7 @@
                                 $("#mod-in-complianceStatus").val(row[4])
                                 $("#mod-in-networkInstallations").val(row[5])
                                 $("#mod-in-id").val(row[6])
-                                $("#mod-in-row").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]}`)
+                                $("#mod-in-row").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]},${row[5]}`)
                             });
                         </script>
                         <script defer>
@@ -101,7 +162,7 @@
 
         <button type="button" class="btn button-accent font-Montserrat f-weight-400 mt-4" data-bs-toggle="modal"
             data-bs-target="#createModal">Add New License</button>
-
+        {% include 'views/components/modals/licenseTracking/viewModal.html' %}
         {% include 'views/components/modals/licenseTracking/editModal.html' %}
         {% include 'views/components/modals/licenseTracking/createModal.html' %}
         {% include 'views/components/modals/licenseTracking/removeModal.html' %}

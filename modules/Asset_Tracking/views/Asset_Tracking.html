@@ -1,6 +1,40 @@
 {% extends '/views/templates/mainTemplate.html' %}
 
 {% block content %}
+    {% if error == 'none' %}
+    <div class="alert alert-success font-Montserrat f-weight-400" role="alert">
+        Success!
+    </div>
+    {% elseif error == '1'%}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Asset Name Can't be null
+    </div>
+    {% elseif error == '2' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Asset Type Can't be null
+    </div>
+    {% elseif error == '3' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Total Purchased Can't be null
+    </div>
+    {% elseif error == '4' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Provide Warrenty
+    </div>
+    {% elseif error == '5' %}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        How many assigned?
+    </div>
+    {% endif %}
+    {% if res == 'none' %}
+    <div class="alert alert-success font-Montserrat f-weight-400" role="alert">
+        Success!
+    </div>
+    {% elseif res == '1'%}
+    <div class="alert alert-danger font-Montserrat f-weight-400" role="alert">
+        Backenderror
+    </div>
+    {% endif %}
 <div class="container-fluid rppit-mc-p1">
     <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Asset Tracking</h1>
     <div class="w-100 p-3">
@@ -29,6 +63,13 @@
                             edit
                         </button> -->
                         <button type="button" class="btn button-accent font-Montserrat f-weight-400"
+                            data-bs-toggle="modal" data-bs-target="#viewModal" data-roles="{{roles | json_encode}}"
+                            data-userroles="{{userRoles[user.id] | json_encode}}"
+                            data-row="{{asset.name}},{{asset.type}},{{ asset.totalPurchased }},{{ asset.warranty }},{{asset.assigned }},{{asset.id}}"
+                            id="viewButton{{counter}}">
+                            view
+                        </button>
+                        <button type="button" class="btn button-accent font-Montserrat f-weight-400"
                             data-bs-toggle="modal" data-bs-target="#editModal" data-roles="{{roles | json_encode}}"
                             data-userroles="{{userRoles[user.id] | json_encode}}"
                             data-row="{{asset.name}},{{asset.type}},{{ asset.totalPurchased }},{{ asset.warranty }},{{asset.assigned }},{{asset.id}}"
@@ -37,14 +78,14 @@
                         </button>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#removeModal" id="removeButton{{counter}}"
-                            data-row="{{asset.name}},{{asset.type}},{{asset.id}}">
+                            data-row="{{asset.name}},{{asset.version}},{{asset.id}}">
                             <i class="bi bi-trash3-fill"></i>
                         </button>
                         <script defer>
-                            $("#editButton{{counter}}").click(function () {
+                            $("#viewButton{{counter}}").click(function () {
 
 
-                                let row = $("#editButton{{counter}}").data("row").split(",");
+                                let row = $("#viewButton{{counter}}").data("row").split(",");
                                 console.log(row)
                                 $("#mod-in-assetName").val(row[0])
                                 $("#mod-in-assetType").val(row[1])
@@ -56,15 +97,28 @@
                             });
                         </script>
                         <script defer>
+                            $("#editButton{{counter}}").click(function () {
+
+
+                                let row = $("#editButton{{counter}}").data("row").split(",");
+                                console.log(row)
+                                $("#mod-in-assetName1").val(row[0])
+                                $("#mod-in-assetType1").val(row[1])
+                                $("#mod-in-totalPurchased1").val(row[2])
+                                $("#mod-in-assetWarranty1").val(row[3])
+                                $("#mod-in-assigned1").val(row[4])
+                                $("#mod-in-id1").val(row[5])
+                                $("#mod-in-row1").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]},${row[5]}`)
+                            });
+                        </script>
+                        <script defer>
                             $("#removeButton{{counter}}").click(function () {
                                 let row = $("#removeButton{{counter}}").data("row").split(",")
-                                console.log(row);
                                 $("#remove-mod-prompt").text(`Do you want to delete ${row[0]} ${row[1]}'s row?`)
                                 $("#remove-mod-id").val(`${row[2]}`)
                             });
                         </script>
                     </td>
-                    <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td>
                 </tr>
                 {% set counter = counter + 1 %}
                 {% endfor %}
@@ -86,7 +140,7 @@
 
         <button type="button" class="btn button-accent font-Montserrat f-weight-400 mt-4" data-bs-toggle="modal"
             data-bs-target="#createModal">Add New Asset</button>
-
+        {% include 'views/components/modals/assetTracking/viewModal.html' %}
         {% include 'views/components/modals/assetTracking/editModal.html' %}
         {% include 'views/components/modals/assetTracking/createModal.html' %}
         {% include 'views/components/modals/assetTracking/removeModal.html' %}

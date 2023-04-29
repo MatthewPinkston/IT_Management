@@ -15,9 +15,26 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
     $networkInstallations = $_POST['networkInstallations'];
 
 
-    if(emptyInput([$softwareName, $softwareVersion, $totalPurchased])){
-        header('Location: users?error=2');
+    if(empty($softwareName)){
+        header('Location: License_Tracking?error=1');
         exit();
+    }else if(empty($softwareVersion)){
+        header('Location: License_Tracking?error=2');
+        exit();
+    }else if(empty($totalPurchased)){
+        header('Location: License_Tracking?error=3');
+        exit();
+    }else if(empty($mangedToInstall)){
+        header('Location: License_Tracking?error=4');
+        exit();
+    }else if(empty($complianceStatus)){
+        header('Location: License_Tracking?error=5');
+        exit();
+    }else if(empty($networkInstallations)){
+        header('Location: License_Tracking?error=6');
+        exit();
+    }else{
+        //Success
     }
 
     // if(idExists($conn, $email) !== false){
@@ -33,7 +50,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
 
         //	Check if statement fails
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location: License_Tracking?error=4");
+            header("Location: License_Tracking?res=1");
             exit();
         }
 
@@ -46,7 +63,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
             
         mysqli_close($conn);
         mysqli_stmt_close($stmt);
-        header('Location: License_Tracking?res=2');
+        header('Location: License_Tracking?res=none');
         exit();
     // }
 }

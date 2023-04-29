@@ -1,19 +1,20 @@
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editModalLabel">Edit Asset</h1>
+                <h1 class="modal-title fs-5" id="editModalLabel">View Asset</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="asset_edit" method="POST">
                     <div class="form-outline mb-4">
-                        <input id="mod-in-assetName1" name="assetName" type="text" class="form-control"/>
+                        <input id="mod-in-assetName" name="assetName" type="text" class="form-control"
+                            placeholder="{{asset.name}}" disabled="disabled"/>
                         <label class="form-label" for="form3Example3">Asset Name</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <select id="mod-in-assetType1" name="assetType" class="form-control" value="Computers">
+                        <select id="mod-in-assetType" name="assetType" class="form-control" value="Computers" disabled>
                             <option value="Computers">Computers</option>
                             <option value="Storage">Storage</option>
                             <option value="IO">IO</option>
@@ -23,12 +24,12 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input id="mod-in-totalPurchased1" name="totalPurchased" type="text" class="form-control"/>
+                        <input id="mod-in-totalPurchased" name="totalPurchased" type="text" class="form-control" placeholder="{{asset.totalPurchased}}" disabled="disabled"/>
                         <label class="form-label" for="form3Example4">Total Purchased</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <select id="mod-in-assetWarranty1" name="assetWarranty" class="form-control" >
+                        <select id="mod-in-assetWarranty" name="assetWarranty" class="form-control" value="In Warranty" disabled>
                             <option value="In Warranty">In Warranty</option>
                             <option value="Out Of Warranty">Out Of Warranty</option>
                             <option value="Extended Warranty">Extended Warranty</option>
@@ -37,16 +38,15 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input id="mod-in-assigned1" name="assigned" type="text" class="form-control" />
+                        <input id="mod-in-assigned" name="assigned" type="text" class="form-control" placeholder="{{asset.assigned}}" disabled="disabled"/>
                         <label class="form-label" for="form3Example4">Assigned</label>
                     </div>
 
-                    <input id="mod-in-id1" name="id" value="" type="hidden" class="form-control"/>
-                    <input id="mod-in-row1" name="row" value="" type="hidden" class="form-control"/>
+                    <input id="mod-in-id" name="id" value="" type="hidden" class="form-control"/>
+                    <input id="mod-in-row" name="row" value="" type="hidden" class="form-control"/>
                     <!-- Submit button -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button name="edit" value="edit" type="submit" class="btn button-accent">Edit</button>
                     </div>
                 </form>
             </div>

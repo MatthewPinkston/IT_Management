@@ -24,6 +24,15 @@
 
         return $licenses;
     }
+    $error = null;
+    if(isset($_GET['error'])){
+        $error = $_GET['error'];
+    }
+
+    $res = null;
+    if(isset($_GET['res'])){
+        $res = $_GET['res'];
+    }
 
     echo $_SESSION['TWIG'] ->render(getValue($app, 'view_path'), [
         'title' => $title, //Expected by the header
@@ -32,6 +41,7 @@
         'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
-
+        'error' => $error, 
+        'res' => $res, 
         'licenses' => getLicenses($conn)
     ]);

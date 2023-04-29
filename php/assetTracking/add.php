@@ -15,10 +15,29 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
     $assigned = $_POST['assigned'];
 
 
-    if(emptyInput([$assetName, $assetType, $totalPurchased, $warranty])){
+    // if(emptyInput([$assetName, $assetType, $totalPurchased, $warranty])){
+    //     header('Location: Asset_Tracking?error=2');
+    //     exit();
+    // }
+    if(empty($assetName)){
+        header('Location: Asset_Tracking?error=1');
+        exit();
+    }else if(empty($assetType)){
         header('Location: Asset_Tracking?error=2');
         exit();
+    }else if(empty($totalPurchased)){
+        header('Location: Asset_Tracking?error=3');
+        exit();
+    }else if(empty($warranty)){
+        header('Location: Asset_Tracking?error=4');
+        exit();
+    }else if(empty($assigned)){
+        header('Location: Asset_Tracking?error=5');
+        exit();
+    }else{
+        //Success
     }
+   
 
     // if(idExists($conn, $email) !== false){
     //     header('Location: users?error=3');
@@ -33,7 +52,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
 
         //	Check if statement fails
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location:Asset_Tracking?error=4");
+            header("Location:Asset_Tracking?res=1");
             exit();
         }
 
@@ -46,7 +65,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
             
         mysqli_close($conn);
         mysqli_stmt_close($stmt);
-        header('Location:Asset_Tracking?res=2');
+        header('Location:Asset_Tracking?res=none');
         exit();
     // }
 }
