@@ -38,7 +38,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
         }
 
 
-        mysqli_stmt_bind_param($stmt, "sssssis", $id, $softwareName, $softwareVersion, $totalPurchased, $mangedToInstall, $complianceStatus, $networkInstallations);
+        mysqli_stmt_bind_param($stmt, "sssssss", $id, $softwareName, $softwareVersion, $totalPurchased, $mangedToInstall, $complianceStatus, $networkInstallations);
 
         mysqli_stmt_execute($stmt);
 
