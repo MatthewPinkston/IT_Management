@@ -16,7 +16,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
 
 
     if(emptyInput([$assetName, $assetType, $totalPurchased, $assetIsActive])){
-        header('Location: Asset_Tracking?error=2');
+        header('Location: Asset_Tracking?error=true');
         exit();
     }
 
@@ -33,7 +33,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
 
         //	Check if statement fails
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location:Asset_Tracking?error=4");
+            header("Location:Asset_Tracking?res=failure");
             exit();
         }
 
@@ -46,7 +46,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
             
         mysqli_close($conn);
         mysqli_stmt_close($stmt);
-        header('Location:Asset_Tracking?res=2');
+        header('Location:Asset_Tracking?res=success');
         exit();
     // }
 }

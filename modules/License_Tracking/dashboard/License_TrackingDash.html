@@ -5,8 +5,8 @@
 <script>
     let myChart = document.getElementById('myChart').getContext('2d');
 
-    let massPopChart = new Chart(myChart, {
-        type:'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    let licenseChart = new Chart(myChart, {
+        type:'polarArea', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
         data:{
             labels:['Over Licensed', 'Under Licensed', 'In Compliance'],
             datasets:[{

@@ -1,6 +1,5 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/mysql/config.php');
-//print_r($_POST);
     // Handles Update Query
     if(isset($_POST['edit']) && $_POST['edit'] == 'edit'){
         
@@ -11,18 +10,24 @@
         $assigned = $_POST['assigned'];
         $id=$_POST['id'];
 
-
+        // print_r($_POST['row']);
 
         $row = explode(', ', $_POST['row']);
-
+        // print_r($row);
         if(empty($assetName)){
-            $assetName = $row[0];
+            $assetName = $row[0][0];
         }
         if(empty($assetType)){
-            $assetType = $row[1];
+            $assetType = $row[0][1];
         }
         if(empty($totalPurchased)){
-            $totalPurchased = $row[2];
+            $totalPurchased = $row[0][2];
+        }
+        if(empty($assetIsActive)){
+            $assetIsActive = $row[0][3];
+        }
+        if(empty($assigned)){
+            $assigned = $row[0][4];
         }
 
        
@@ -42,7 +47,7 @@
 
         mysqli_stmt_close($stmt);
 
-        header('Location:Asset_Tracking?res=1');
+        header('Location:Asset_Tracking?res=success');
         // comment
         exit();
     }

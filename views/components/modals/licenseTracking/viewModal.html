@@ -1,36 +1,34 @@
-<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a New License</h1>
+                <h1 class="modal-title fs-5" id="editModalLabel">View License</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="license_add" method="POST">
-       
-
+                <form action="license_edit" method="POST">
                     <div class="form-outline mb-4">
-                        <input id="mod-in-email" name="softwareName" type="text" class="form-control"/>
+                        <input id="view-mod-in-softwareName"  name="softwareName" type="text" class="form-control"  readonly="readonly"/>
                         <label class="form-label" for="form3Example3">Software Name</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input name="softwareVersion" type="text" class="form-control" />
+                        <input id="view-mod-in-softwareVersion" name="softwareVersion" type="text" class="form-control" readonly="readonly"/>
                         <label class="form-label" for="form3Example4">Software Version</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input name="totalPurchased" type="text" class="form-control" />
+                        <input id="view-mod-in-totalPurchased" name="totalPurchased" type="text" class="form-control" readonly="readonly"/>
                         <label class="form-label" for="form3Example4">Total Purchased</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input name="mangedToInstall" type="text" class="form-control" />
+                        <input id="view-mod-in-mangedToInstall" name="mangedToInstall" type="text" class="form-control" readonly="readonly"/>
                         <label class="form-label" for="form3Example4">Manged to Install</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <select name="complianceStatus" class="form-control">
+                        <select id="view-mod-in-complianceStatus" name="complianceStatus" class="form-control" disabled>
                             <option value="In Compliance">In Compliance</option>
                             <option value="Under Licensed">Under Licensed</option>
                             <option value="Over Licensed">Over Licensed</option>
@@ -40,19 +38,19 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input name="networkInstallations" type="text" class="form-control" />
+                        <input id="view-mod-in-networkInstallations" name="networkInstallations" type="text" class="form-control" readonly="readonly"/>
                         <label class="form-label" for="form3Example4">Network Installations</label>
                     </div>
 
-                    <input id="mod-in-id" name="id" value="" type="hidden" class="form-control" />
-                    <input id="mod-in-row" name="row" value="" type="hidden" class="form-control" />
+                    <input id="view-mod-in-id" name="id" value="" type="hidden" class="form-control"/>
+                    <input id="view-mod-in-row" name="row" value="" type="hidden" class="form-control"/>
                     <!-- Submit button -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button name="submit" value="add" type="submit" class="btn button-accent">Add</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+  </div>
+

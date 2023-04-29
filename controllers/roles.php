@@ -44,7 +44,7 @@
         return $query;
     }
     function generateTypes($form){
-        $types = '';
+        $query = '';
 
         foreach($form as $data){
             $query .= 's';

@@ -1,24 +1,22 @@
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editModalLabel">Edit Asset</h1>
+                <h1 class="modal-title fs-5" id="viewModalLabel">View Asset</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="asset_edit" method="POST">
                     <div class="form-outline mb-4">
-                        <input id="mod-in-assetName" name="assetName" type="text" class="form-control" value="{{asset.name}}"
-                            placeholder="{{asset.name}}" />
+                        <input id="view-mod-in-assetName" name="assetName" type="text" class="form-control" readonly="readonly"/>
                         <label class="form-label" for="form3Example3">Name</label>
                     </div>
                     <div class="form-outline mb-4">
-                        <input id="mod-in-assetType" name="assetType" type="text" class="form-control" value="{{asset.assetType}}"
-                            placeholder="{{asset.assetType}}" />
+                        <input id="view-mod-in-assetType" name="assetType" type="text" class="form-control" readonly="readonly"/>
                         <label class="form-label" for="form3Example3">Type</label>
                     </div>
                     <div class="form-outline mb-4">
-                        <select id="mod-in-assetIsActive" name="assetIsActive" class="form-control">
+                        <select id="view-mod-in-assetIsActive" name="assetIsActive" class="form-control" disabled>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                             <option value="NA">NA</option>
@@ -28,21 +26,20 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input id="mod-in-totalPurchased" name="totalPurchased" type="text" class="form-control" />
+                        <input id="view-mod-in-totalPurchased" name="totalPurchased" type="text" class="form-control" readonly="readonly"/>
                         <label class="form-label" for="form3Example4">Purchased</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input id="mod-in-assigned" name="assigned" type="text" class="form-control" />
+                        <input id="view-mod-in-assigned" name="assigned" type="text" class="form-control" readonly="readonly"/>
                         <label class="form-label" for="form3Example4">Assigned</label>
                     </div>
 
-                    <input id="mod-in-id" name="id" value="" type="hidden" class="form-control"/>
-                    <input id="mod-in-row" name="row" value="" type="hidden" class="form-control"/>
+                    <input id="view-mod-in-id" name="id" value="" type="hidden" class="form-control"/>
+                    <input id="view-mod-in-row" name="row" value="" type="hidden" class="form-control"/>
                     <!-- Submit button -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button name="edit" value="edit" type="submit" class="btn button-accent">Save</button>
                     </div>
                 </form>
             </div>

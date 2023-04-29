@@ -1,6 +1,24 @@
 {% extends '/views/templates/mainTemplate.html' %}
 
 {% block content %}
+    {% if error == 'false' %}
+        <script>
+            alert("Operation Success!");
+        </script>
+    {% elseif error == 'true'%}
+        <script>
+            alert("Some of the required fields are empty!");
+        </script>
+    {% endif %}
+    {% if res == 'success' %}
+        <script>
+            alert("Operation Success!");
+        </script>
+    {% elseif res == 'failure'%}
+        <script>
+            alert("Something went wrong at backend!");
+        </script>
+    {% endif %}
 <div class="container-fluid rppit-mc-p1">
     <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Asset Tracking</h1>
     <div class="w-100 p-3">
@@ -29,17 +47,39 @@
                             edit
                         </button> -->
                         <button type="button" class="btn button-accent font-Montserrat f-weight-400"
+                            data-bs-toggle="modal" data-bs-target="#viewModal" data-roles="{{roles | json_encode}}"
+                            data-userroles="{{userRoles[user.id] | json_encode}}"
+                            data-row="{{asset.name}},{{asset.assetType}},{{ asset.totalPurchased }},{{ asset.isActive }},{{asset.assigned }},{{asset.id}}"
+                            id="viewButton{{counter}}">
+                            View
+                        </button>
+                        <button type="button" class="btn button-accent font-Montserrat f-weight-400"
                             data-bs-toggle="modal" data-bs-target="#editModal" data-roles="{{roles | json_encode}}"
                             data-userroles="{{userRoles[user.id] | json_encode}}"
                             data-row="{{asset.name}},{{asset.assetType}},{{ asset.totalPurchased }},{{ asset.isActive }},{{asset.assigned }},{{asset.id}}"
                             id="editButton{{counter}}">
-                            edit
+                            Edit
                         </button>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#removeModal" id="removeButton{{counter}}"
                             data-row="{{asset.name}},{{asset.assetType}},{{asset.id}}">
                             <i class="bi bi-trash3-fill"></i>
                         </button>
+                        <script defer>
+                            $("#viewButton{{counter}}").click(function () {
+
+
+                                let row = $("#viewButton{{counter}}").data("row").split(",");
+                                console.log(row)
+                                $("#view-mod-in-assetName").val(row[0])
+                                $("#view-mod-in-assetType").val(row[1])
+                                $("#view-mod-in-totalPurchased").val(row[2])
+                                $("#view-mod-in-assetIsActive").val(row[3])
+                                $("#view-mod-in-assigned").val(row[4])
+                                $("#view-mod-in-id").val(row[5])
+                                $("#view-mod-in-row").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]},${row[5]}`)
+                            });
+                        </script>
                         <script defer>
                             $("#editButton{{counter}}").click(function () {
 
@@ -59,7 +99,7 @@
                             $("#removeButton{{counter}}").click(function () {
                                 let row = $("#removeButton{{counter}}").data("row").split(",")
                                 $("#remove-mod-prompt").text(`Do you want to delete ${row[0]} ${row[1]}'s row?`)
-                                $("#remove-mod-id").val(`${row[2]}`)
+                                $("#remove-mod-id").val(`${row[5]}`)
                             });
                         </script>
                     </td>
@@ -84,7 +124,7 @@
 
         <button type="button" class="btn button-accent font-Montserrat f-weight-400 mt-4" data-bs-toggle="modal"
             data-bs-target="#createModal">Add New Asset</button>
-
+        {% include 'views/components/modals/assetTracking/viewModal.html' %}
         {% include 'views/components/modals/assetTracking/editModal.html' %}
         {% include 'views/components/modals/assetTracking/createModal.html' %}
         {% include 'views/components/modals/assetTracking/removeModal.html' %}

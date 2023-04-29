@@ -25,17 +25,26 @@
         if(empty($totalPurchased)){
             $totalPurchased = $row[2];
         }
+        if(empty($mangedToInstall)){
+            $mangedToInstall = $row[3];
+        }
+        if(empty($complianceStatus)){
+            $complianceStatus = $row[4];
+        }
+        if(empty($networkInstallations)){
+            $networkInstallations = $row[5];
+        }
 
        
         $sql = 'UPDATE License_Tracking SET name=?, version=?, totalPurchased=?, managedInstallations=?, complianceStatus=?, networkInstallations=? WHERE id=?';
         $stmt = mysqli_prepare($conn, $sql);
 
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            header('Location: users?error=1');
+            header('Location: users?res=failure');
             exit();
         }
 
-        mysqli_stmt_bind_param($stmt, "sssssss", $softwareName, $softwareVersion, $totalPurchased, $mangedToInstall, $complianceStatus, $networkInstallations, $id);
+        mysqli_stmt_bind_param($stmt, "sssssis", $softwareName, $softwareVersion, $totalPurchased, $mangedToInstall, $complianceStatus, $networkInstallations, $id);
 
         mysqli_stmt_execute($stmt);
 
@@ -43,7 +52,7 @@
 
         mysqli_stmt_close($stmt);
 
-        header('Location: /License_Tracking?res=1');
+        header('Location: /License_Tracking?res=success');
         // comment
         exit();
     }

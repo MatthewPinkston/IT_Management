@@ -7,7 +7,15 @@
     $app = $_SERVER['DOCUMENT_ROOT'].'/modules/License_Tracking/app.json';
 
     $title = getValue($app, 'module_name');
+    $error = null;
+    if(isset($_GET['error'])){
+        $error = $_GET['error'];
+    }
 
+    $res = null;
+    if(isset($_GET['res'])){
+        $res = $_GET['res'];
+    }
     // If the user is not logged in, redirect to login view
     if(!isLogged()){
         header('Location: /Login');
@@ -24,6 +32,7 @@
 
         return $licenses;
     }
+    
 
     echo $_SESSION['TWIG'] ->render(getValue($app, 'view_path'), [
         'title' => $title, //Expected by the header
@@ -32,6 +41,7 @@
         'rolesView' => checkPrivilege('view_roles', $_SESSION['user_roles']),
         'appName' => $_ENV['APP_NAME'], //Expected for nav bar to show name of the application
         'modules' => $_SERVER['MODULE_PATHS'], //Expected side navbar
-
-        'licenses' => getLicenses($conn)
+        'licenses' => getLicenses($conn),
+        'error' => $error, 
+        'res' => $res
     ]);

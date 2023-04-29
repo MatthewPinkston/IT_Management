@@ -16,7 +16,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
 
 
     if(emptyInput([$softwareName, $softwareVersion, $totalPurchased])){
-        header('Location: users?error=2');
+        header('Location: License_Tracking?error=true');
         exit();
     }
 
@@ -33,12 +33,12 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
 
         //	Check if statement fails
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location: License_Tracking?error=4");
+            header("Location: License_Tracking?res=failure");
             exit();
         }
 
 
-        mysqli_stmt_bind_param($stmt, "sssssss", $id, $softwareName, $softwareVersion, $totalPurchased, $mangedToInstall, $complianceStatus, $networkInstallations);
+        mysqli_stmt_bind_param($stmt, "sssssis", $id, $softwareName, $softwareVersion, $totalPurchased, $mangedToInstall, $complianceStatus, $networkInstallations);
 
         mysqli_stmt_execute($stmt);
 
@@ -46,7 +46,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'add'){
             
         mysqli_close($conn);
         mysqli_stmt_close($stmt);
-        header('Location: License_Tracking?res=2');
+        header('Location: License_Tracking?res=success');
         exit();
     // }
 }

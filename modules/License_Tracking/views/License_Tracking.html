@@ -1,8 +1,26 @@
 {% extends '/views/templates/mainTemplate.html' %}
 
 {% block content %}
+    {% if error == 'false' %}
+        <script>
+            alert("Operation Success!");
+        </script>
+    {% elseif error == 'true'%}
+        <script>
+            alert("Some of the required fields are empty!");
+        </script>
+    {% endif %}
+    {% if res == 'success' %}
+        <script>
+            alert("Operation Success!");
+        </script>
+    {% elseif res == 'failure'%}
+        <script>
+            alert("Something went wrong at backend!");
+        </script>
+    {% endif %}
 <div class="container-fluid rppit-mc-p1">
-    <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">License Tracking</h1>
+    <h1 class="color-accent font-Montserrat fw-bold display-5 mt-4 mb-4 ms-3">Licensing Tracking</h1>
     <div class="w-100 p-3">
         <table id="table" data-toggle="table" data-search="true" data-filter-control="true" data-show-export="true"
             data-click-to-select="true" data-toolbar="#toolbar" class="table text-center table-responsive">
@@ -14,8 +32,8 @@
                     <th data-field="managedInstallations" data-sortable="true" scope="col">Managed Installations</th>
                     <th data-field="remaining" data-sortable="true" scope="col">Remaining</th>
                     <th data-field="complianceStatus" data-sortable="true" scope="col">Compliance Status</th>
-                    <th data-field="actions" data-sortable="false" scope="col">Actions</th>
                     <th data-field="networkInstallations" data-sortable="true" scope="col">Network Installations</th>
+                    <th data-field="actions" data-sortable="false" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,22 +57,46 @@
                             class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-secondary bg-secondary bg-opacity-10 border border-success border-opacity-10 rounded-2">{{license.complianceStatus}}</small>
                         {% endif %}
                     </td>
+                    <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td>
                     <td class="">
                         <!-- <button type="button" class="btn button-accent font-Montserrat f-weight-400">
                             edit
                         </button> -->
                         <button type="button" class="btn button-accent font-Montserrat f-weight-400"
+                            data-bs-toggle="modal" data-bs-target="#viewModal" data-roles="{{roles | json_encode}}"
+                            data-userroles="{{userRoles[user.id] | json_encode}}"
+                            data-row="{{license.name}},{{license.version}},{{ license.totalPurchased }},{{ license.managedInstallations }},{{license.complianceStatus}},{{license.networkInstallations }},{{license.id}}"
+                            id="viewButton{{counter}}">
+                            View
+                        </button>
+                        <button type="button" class="btn button-accent font-Montserrat f-weight-400"
                             data-bs-toggle="modal" data-bs-target="#editModal" data-roles="{{roles | json_encode}}"
                             data-userroles="{{userRoles[user.id] | json_encode}}"
                             data-row="{{license.name}},{{license.version}},{{ license.totalPurchased }},{{ license.managedInstallations }},{{license.complianceStatus}},{{license.networkInstallations }},{{license.id}}"
                             id="editButton{{counter}}">
-                            edit
+                            Edit
                         </button>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#removeModal" id="removeButton{{counter}}"
                             data-row="{{license.name}},{{license.version}},{{license.id}}">
                             <i class="bi bi-trash3-fill"></i>
                         </button>
+                        <script defer>
+                            $("#viewButton{{counter}}").click(function () {
+
+
+                                let row = $("#editButton{{counter}}").data("row").split(",");
+                                console.log(row)
+                                $("#view-mod-in-softwareName").val(row[0])
+                                $("#view-mod-in-softwareVersion").val(row[1])
+                                $("#view-mod-in-totalPurchased").val(row[2])
+                                $("#view-mod-in-mangedToInstall").val(row[3])
+                                $("#view-mod-in-complianceStatus").val(row[4])
+                                $("#view-mod-in-networkInstallations").val(row[5])
+                                $("#view-mod-in-id").val(row[6])
+                                $("#view-mod-in-row").val(`${row[0]},${row[1]},${row[2]},${row[3]},${row[4]}`)
+                            });
+                        </script>
                         <script defer>
                             $("#editButton{{counter}}").click(function () {
 
@@ -79,7 +121,6 @@
                             });
                         </script>
                     </td>
-                    <td class="font-Montserrat f-weigth-400">{{ license.networkInstallations }}</td>
                 </tr>
                 {% set counter = counter + 1 %}
                 {% endfor %}
@@ -101,7 +142,7 @@
 
         <button type="button" class="btn button-accent font-Montserrat f-weight-400 mt-4" data-bs-toggle="modal"
             data-bs-target="#createModal">Add New License</button>
-
+        {% include 'views/components/modals/licenseTracking/viewModal.html' %}
         {% include 'views/components/modals/licenseTracking/editModal.html' %}
         {% include 'views/components/modals/licenseTracking/createModal.html' %}
         {% include 'views/components/modals/licenseTracking/removeModal.html' %}
